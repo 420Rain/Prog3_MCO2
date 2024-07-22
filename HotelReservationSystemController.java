@@ -43,13 +43,21 @@ public class HotelReservationSystemController{
                     for(Hotel hotel : hotelList) {
                         displayText += hotel.getName() + "\n";
                     }
+                    hrsView.setHotelListLblText(displayText);
+                    hrsView.viewHotelDisplay();
                 }
                 else{
                     displayText += "No Hotels listed yet !";
+                    hrsView.noHotelDisplay();
                 }
+				
+            }
+        });
 
-				hrsView.setHotelListLblText(displayText);
-                hrsView.viewHotelDisplay();
+        this.hrsView.setOkayBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                hrsView.closeWindow(hrsView.getFrameList().get(1));
             }
         });
 

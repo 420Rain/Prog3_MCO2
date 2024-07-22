@@ -1,13 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
+
 import java.util.*;
 
 public class HotelReservationSystemView extends JFrame {
-    private JFrame mainFrame, createHFrame, viewHFrame;
+    private ArrayList<JFrame> frameList = new ArrayList<JFrame>();
     private JLabel promptLbl, promptLbl2, feedbackLbl;
     private JTextField hotelNameTf, numRoomTf;
-    private JButton createHotelBtn, viewHotelBtn, manageHotelBtn, bookRoomBtn, exitBtn, createBtn, viewBtn;
+    private JButton createHotelBtn, viewHotelBtn, manageHotelBtn, bookRoomBtn, exitBtn, createBtn, viewBtn, okayBtn, manageBtn;
     private JTextArea hotelListTextArea;
 
     public HotelReservationSystemView(){
@@ -22,9 +24,14 @@ public class HotelReservationSystemView extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        /*this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.mainFrame.setLayout(new BoxLayout(this.mainFrame.getContentPane(), BoxLayout.Y_AXIS));
-        this.mainFrame.setSize(750, 225);*/
+        JFrame createHFrame = new JFrame("Create a Hotel !");
+        this.frameList.add(createHFrame);
+
+        JFrame noHFrame = new JFrame("Hotel Reservation System");
+        this.frameList.add(noHFrame);
+
+        JFrame viewHFrame = new JFrame("View a Hotel !");
+        this.frameList.add(viewHFrame);
 
         this.hotelListTextArea = new JTextArea();
         this.hotelListTextArea.setPreferredSize(new Dimension(220, 170));
@@ -36,21 +43,11 @@ public class HotelReservationSystemView extends JFrame {
         this.viewBtn = new JButton("View");
         this.viewBtn.setPreferredSize(new Dimension(100, 30));
 
-        /*this.mainFrame.add(Box.createVerticalStrut(20));
-        this.mainFrame.add(promptLbl);
-        this.mainFrame.add(Box.createVerticalStrut(10));
-        this.mainFrame.add(promptLbl2);
-        this.mainFrame.add(Box.createVerticalStrut(20));*/
-
-        /*JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panel.add(createHotelBtn);
-        panel.add(viewHotelBtn);
-        panel.add(manageHotelBtn);
-        panel.add(bookRoomBtn);
-        panel.add(exitBtn);
-        this.mainFrame.add(panel);
+        this.okayBtn = new JButton("Okay");
+        this.okayBtn.setPreferredSize(new Dimension(100, 20));
         
-        this.mainFrame.setVisible(true);*/
+        //removes the blue thing around the text of the button but needs to applied to all buttons :(
+        this.okayBtn.setFocusPainted(false);
     }
 
     public void initialize(){
@@ -142,6 +139,10 @@ public class HotelReservationSystemView extends JFrame {
       this.viewBtn.addActionListener(actionListener);
     }
 
+    public void setOkayBtnListener(ActionListener actionListener){
+      this.okayBtn.addActionListener(actionListener);
+    }
+
     public void setFeedbackLblText(String text) {
       this.feedbackLbl.setText(text);
     }
@@ -163,11 +164,20 @@ public class HotelReservationSystemView extends JFrame {
       this.numRoomTf.setText("");
     }
 
+    public void closeWindow(JFrame Window){
+      Window.dispose();
+    }
+    
+    public void clearPanels(){ 
+      //clears panels
+    }
+
     public void createHotelDisplay(){
-      this.createHFrame = new JFrame("Create a Hotel !");
-      this.createHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		  this.createHFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
-      this.createHFrame.setSize(600, 125);
+      JFrame createHFrame = this.frameList.get(0);
+
+      createHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		  createHFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
+      createHFrame.setSize(600, 125);
 
       this.promptLbl = new JLabel("Enter Hotel Name: ");
       this.promptLbl2 = new JLabel("Enter # of Rooms: ");
@@ -183,26 +193,54 @@ public class HotelReservationSystemView extends JFrame {
       panel.add(promptLbl);
       panel.add(hotelNameTf);
       panel.setPreferredSize(new Dimension(220, 30));
-      this.createHFrame.add(panel);
+      createHFrame.add(panel);
 
       panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
       panel.add(promptLbl2);
       panel.add(numRoomTf);
       panel.setPreferredSize(new Dimension(220, 30));
-      this.createHFrame.add(panel);
+      createHFrame.add(panel);
 
-      this.createHFrame.add(createBtn);
-      this.createHFrame.add(feedbackLbl);
+      createHFrame.add(createBtn);
+      createHFrame.add(feedbackLbl);
 
-      this.createHFrame.setLocationRelativeTo(null);
-      this.createHFrame.setVisible(true);
+      createHFrame.setLocationRelativeTo(null);
+      createHFrame.setVisible(true);
+    }
+
+    public void noHotelDisplay(){
+      JFrame noHFrame = this.frameList.get(1);
+
+      noHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+      noHFrame.setLayout(new BorderLayout());
+      noHFrame.setSize(450, 100);
+
+      promptLbl = new JLabel("Cannot Proceed. No Hotels Found. Click Create Hotel to Create One", SwingConstants.CENTER);
+
+      JPanel centerPanel = new JPanel();
+      centerPanel.setLayout(new BorderLayout());
+      centerPanel.add(promptLbl);
+
+      noHFrame.add(centerPanel, BorderLayout.CENTER);
+
+      JPanel southPanel = new JPanel();
+      southPanel.setLayout(new FlowLayout());
+      okayBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+      southPanel.add(okayBtn);
+
+      noHFrame.add(southPanel, BorderLayout.SOUTH);
+      
+      noHFrame.setLocationRelativeTo(null);
+      noHFrame.setVisible(true);
+      noHFrame.setResizable(false);
     }
 
     public void viewHotelDisplay(){
-      this.viewHFrame = new JFrame("View a Hotel !");
-      this.viewHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		  this.viewHFrame.setLayout(new BoxLayout(this.viewHFrame.getContentPane(), BoxLayout.Y_AXIS));
-      this.viewHFrame.setSize(600, 300);
+      JFrame viewHFrame = this.frameList.get(2);
+
+      viewHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		  viewHFrame.setLayout(new BoxLayout(viewHFrame.getContentPane(), BoxLayout.Y_AXIS));
+      viewHFrame.setSize(600, 300);
 
       this.promptLbl = new JLabel("Select a Hotel to view !");
       this.promptLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -210,26 +248,30 @@ public class HotelReservationSystemView extends JFrame {
 
 
       JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-      this.viewHFrame.add(hotelListTextArea);
-      this.viewHFrame.add(panel);
+      viewHFrame.add(hotelListTextArea);
+      viewHFrame.add(panel);
 
       this.hotelNameTf = new JTextField();
 		  this.hotelNameTf.setColumns(10);
 
-      this.viewHFrame.add(Box.createVerticalStrut(15));
-      this.viewHFrame.add(promptLbl);
-      this.viewHFrame.add(Box.createVerticalStrut(10));
+      viewHFrame.add(Box.createVerticalStrut(15));
+      viewHFrame.add(promptLbl);
+      viewHFrame.add(Box.createVerticalStrut(10));
 
       panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
       panel.add(this.promptLbl2);
       panel.add(this.hotelNameTf);
       panel.setPreferredSize(new Dimension(220, 30));
-      this.viewHFrame.add(panel);
+      viewHFrame.add(panel);
 
       this.viewBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-      this.viewHFrame.add(viewBtn);
+      viewHFrame.add(viewBtn);
 
-      this.viewHFrame.setLocationRelativeTo(null);
-      this.viewHFrame.setVisible(true);
+      viewHFrame.setLocationRelativeTo(null);
+      viewHFrame.setVisible(true);
+    }
+
+    public ArrayList<JFrame> getFrameList(){
+      return this.frameList;
     }
 }
