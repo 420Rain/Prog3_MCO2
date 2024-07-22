@@ -4,10 +4,11 @@ import javax.swing.*;
 import java.util.*;
 
 public class HotelReservationSystemView{
-    private JFrame mainFrame, createHFrame;
+    private JFrame mainFrame, createHFrame, viewHFrame;
     private JLabel promptLbl, promptLbl2, feedbackLbl;
     private JTextField hotelNameTf, numRoomTf;
-    private JButton createHotelBtn, viewHotelBtn, manageHotelBtn, bookRoomBtn, exitBtn, createBtn;
+    private JTextArea hotelListTextArea;
+    private JButton createHotelBtn, viewHotelBtn, manageHotelBtn, bookRoomBtn, exitBtn, createBtn, viewBtn;
 
     public HotelReservationSystemView(){
         this.mainFrame = new JFrame("Hotel Reservation System");
@@ -21,6 +22,10 @@ public class HotelReservationSystemView{
         this.promptLbl2 = new JLabel("Please select an option !");
         this.promptLbl2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        this.hotelListTextArea = new JTextArea();
+        this.hotelListTextArea.setPreferredSize(new Dimension(220, 170));
+        this.hotelListTextArea.setEditable(false);
+
         this.createHotelBtn = new JButton("Create a Hotel");
         this.createHotelBtn.setPreferredSize(new Dimension(220, 30));
         this.viewHotelBtn = new JButton("View Hotels");
@@ -33,6 +38,8 @@ public class HotelReservationSystemView{
         this.exitBtn.setPreferredSize(new Dimension(220, 30));
         this.createBtn = new JButton("Create");
         this.createBtn.setPreferredSize(new Dimension(100, 30));
+        this.viewBtn = new JButton("View");
+        this.viewBtn.setPreferredSize(new Dimension(100, 30));
 
         this.mainFrame.add(Box.createVerticalStrut(20));
         this.mainFrame.add(promptLbl);
@@ -75,8 +82,16 @@ public class HotelReservationSystemView{
       this.createBtn.addActionListener(actionListener);
     }
 
+    public void setViewBtnListener(ActionListener actionListener){
+      this.viewBtn.addActionListener(actionListener);
+    }
+
     public void setFeedbackLblText(String text) {
       this.feedbackLbl.setText(text);
+    }
+
+    public void setHotelListLblText(String text) {
+      this.hotelListTextArea.setText(text);
     }
 
     public String getHotelNameTfText() {
@@ -96,7 +111,7 @@ public class HotelReservationSystemView{
       this.createHFrame = new JFrame("Create a Hotel !");
       this.createHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		  this.createHFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
-      this.createHFrame.setSize(600, 150);
+      this.createHFrame.setSize(600, 125);
 
       this.promptLbl = new JLabel("Enter Hotel Name: ");
       this.promptLbl2 = new JLabel("Enter # of Rooms: ");
@@ -115,8 +130,8 @@ public class HotelReservationSystemView{
       this.createHFrame.add(panel);
 
       panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-      panel.add(this.promptLbl2);
-      panel.add(this.numRoomTf);
+      panel.add(promptLbl2);
+      panel.add(numRoomTf);
       panel.setPreferredSize(new Dimension(220, 30));
       this.createHFrame.add(panel);
 
@@ -124,5 +139,39 @@ public class HotelReservationSystemView{
       this.createHFrame.add(feedbackLbl);
 
       this.createHFrame.setVisible(true);
+    }
+
+    public void viewHotelDisplay(){
+      this.viewHFrame = new JFrame("View a Hotel !");
+      this.viewHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		  this.viewHFrame.setLayout(new BoxLayout(this.viewHFrame.getContentPane(), BoxLayout.Y_AXIS));
+      this.viewHFrame.setSize(600, 300);
+      
+      this.promptLbl = new JLabel("Select a Hotel to view !");
+      this.promptLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
+      this.promptLbl2 = new JLabel("Hotel: ");
+        
+
+      JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+      this.viewHFrame.add(hotelListTextArea);
+      this.viewHFrame.add(panel);
+
+      this.hotelNameTf = new JTextField();
+		  this.hotelNameTf.setColumns(10);
+
+      this.viewHFrame.add(Box.createVerticalStrut(15));
+      this.viewHFrame.add(promptLbl);
+      this.viewHFrame.add(Box.createVerticalStrut(10));
+
+      panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+      panel.add(this.promptLbl2);
+      panel.add(this.hotelNameTf);
+      panel.setPreferredSize(new Dimension(220, 30));
+      this.viewHFrame.add(panel);
+
+      this.viewBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+      this.viewHFrame.add(viewBtn);
+
+      this.viewHFrame.setVisible(true);
     }
 }

@@ -33,6 +33,26 @@ public class HotelReservationSystemController{
             }
         });
 
+        this.hrsView.setViewHotelBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                ArrayList<Hotel> hotelList = hrsModel.getHotelList();
+                String displayText = "";
+
+                if(!hotelList.isEmpty()){
+                    for(Hotel hotel : hotelList) {
+                        displayText += hotel.getName() + "\n";
+                    }
+                }
+                else{
+                    displayText += "No Hotels listed yet !";
+                }
+                
+				hrsView.setHotelListLblText(displayText);
+                hrsView.viewHotelDisplay();
+            }
+        });
+
         this.hrsView.setExitBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
