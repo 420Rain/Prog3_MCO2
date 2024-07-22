@@ -47,7 +47,7 @@ public class HotelReservationSystemController{
                 else{
                     displayText += "No Hotels listed yet !";
                 }
-                
+
 				hrsView.setHotelListLblText(displayText);
                 hrsView.viewHotelDisplay();
             }
