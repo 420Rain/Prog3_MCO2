@@ -7,6 +7,7 @@ import java.util.*;
 
 public class HotelReservationSystemView extends JFrame {
     private ArrayList<JFrame> frameList = new ArrayList<JFrame>();
+    private ArrayList<JButton> hotelList = new ArrayList<JButton>();
     private JLabel promptLbl, promptLbl2, feedbackLbl;
     private JTextField hotelNameTf, numRoomTf;
     private JButton createHotelBtn, viewHotelBtn, manageHotelBtn, bookRoomBtn, exitBtn, createBtn, viewBtn, okayBtn, manageBtn;
@@ -52,6 +53,11 @@ public class HotelReservationSystemView extends JFrame {
 
     public void initialize(){
         //Left Panel
+        /*if(westPanel != null && centerPanel != null){
+          clearPanel(westPanel);
+          clearPanel(centerPanel);
+        }*/
+
         Dimension buttonDim = new Dimension(150, 30);
 
         JPanel westPanel = new JPanel();
@@ -109,6 +115,11 @@ public class HotelReservationSystemView extends JFrame {
         centerPanel.add(promptLbl2, BorderLayout.CENTER);
 
         this.add(centerPanel, BorderLayout.CENTER);
+
+        westPanel.revalidate();
+        westPanel.repaint();
+        centerPanel.revalidate();
+        centerPanel.repaint();
     }
     
     public void setCreateHotelBtnListener(ActionListener actionListener) {
@@ -147,8 +158,11 @@ public class HotelReservationSystemView extends JFrame {
       this.feedbackLbl.setText(text);
     }
 
-    public void setHotelListLblText(String text) {
-      this.hotelListTextArea.setText(text);
+    public void setButtonList(String name, ActionListener actionListener){
+      JButton button = new JButton(name);
+      button.addActionListener(actionListener);
+      button.setPreferredSize(new Dimension(220, 30));
+      hotelList.add(button);
     }
 
     public String getHotelNameTfText() {
@@ -164,20 +178,26 @@ public class HotelReservationSystemView extends JFrame {
       this.numRoomTf.setText("");
     }
 
+    public void clearHotelButtons(){
+      this.hotelList.clear();
+    }
+
     public void closeWindow(JFrame Window){
       Window.dispose();
     }
     
-    public void clearPanels(){ 
+    public void clearPanels(JPanel Panel){ 
       //clears panels
+      Panel.removeAll();
     }
 
     public void createHotelDisplay(){
       JFrame createHFrame = this.frameList.get(0);
 
-      createHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		  createHFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
-      createHFrame.setSize(600, 125);
+        createHFrame = new JFrame("Create a Hotel");
+        createHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        createHFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
+        createHFrame.setSize(600, 125);
 
       this.promptLbl = new JLabel("Enter Hotel Name: ");
       this.promptLbl2 = new JLabel("Enter # of Rooms: ");
@@ -237,35 +257,25 @@ public class HotelReservationSystemView extends JFrame {
 
     public void viewHotelDisplay(){
       JFrame viewHFrame = this.frameList.get(2);
-
+      viewHFrame = new JFrame("View a Hotel !");
       viewHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		  viewHFrame.setLayout(new BoxLayout(viewHFrame.getContentPane(), BoxLayout.Y_AXIS));
-      viewHFrame.setSize(600, 300);
+      viewHFrame.setSize(250, 300);
 
-      this.promptLbl = new JLabel("Select a Hotel to view !");
-      this.promptLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
-      this.promptLbl2 = new JLabel("Hotel: ");
-
-
-      JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-      viewHFrame.add(hotelListTextArea);
-      viewHFrame.add(panel);
-
-      this.hotelNameTf = new JTextField();
-		  this.hotelNameTf.setColumns(10);
+      promptLbl = new JLabel("Select a Hotel to view !");
+      promptLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
 
       viewHFrame.add(Box.createVerticalStrut(15));
       viewHFrame.add(promptLbl);
       viewHFrame.add(Box.createVerticalStrut(10));
 
-      panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-      panel.add(this.promptLbl2);
-      panel.add(this.hotelNameTf);
-      panel.setPreferredSize(new Dimension(220, 30));
-      viewHFrame.add(panel);
-
-      this.viewBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-      viewHFrame.add(viewBtn);
+      Iterator<JButton> button = hotelList.iterator();
+      while (button.hasNext()) {
+        JButton hButton = button.next();
+        hButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        viewHFrame.add(hButton);
+      }
+      
 
       viewHFrame.setLocationRelativeTo(null);
       viewHFrame.setVisible(true);
