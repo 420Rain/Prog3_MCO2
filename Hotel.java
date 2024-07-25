@@ -133,6 +133,10 @@ public class Hotel{
     return this.numRooms;
   }
 
+  public Room getRoom(int index){
+    return hotelRooms.get(index);
+  }
+
   /**
   * This method gets the array of Rooms of the Hotel
   * @return array of Rooms

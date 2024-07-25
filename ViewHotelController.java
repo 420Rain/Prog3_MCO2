@@ -1,4 +1,7 @@
 import java.awt.event.*;
+import java.awt.*;
+import java.util.*;
+import javax.swing.*;
 
 public class ViewHotelController {
     
@@ -34,6 +37,27 @@ public class ViewHotelController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 vhView.dispose();
+            }
+        });
+
+        this.vhView.setSelectDayBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int day = Integer.parseInt(vhView.getAvailTfText());
+                Iterator<Room> availableRooms = vhModel.getAvailableRooms(day).iterator();
+                JTextArea textArea = vhView.getAvailabilityTA();
+                
+                // Clear the text area
+                textArea.setText("");
+                
+                // Append new content
+                while(availableRooms.hasNext()){
+                    textArea.append(availableRooms.next().getName() + "\n");
+                }
+    
+                // Force the UI to update
+                textArea.revalidate();
+                textArea.repaint();
             }
         });
 

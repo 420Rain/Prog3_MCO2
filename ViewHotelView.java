@@ -8,6 +8,7 @@ public class ViewHotelView extends JFrame {
     private JButton roomAvailBtn, roomDetailBtn, reservationsBtn, backBtn;
     private JButton returnBtn, selectDayBtn;
     private JTextField availTf;
+    private JTextArea availabilityTextArea = new JTextArea(15, 10);
     private JPanel mainPanel;
     private CardLayout cardLayout;
 
@@ -93,7 +94,7 @@ public class ViewHotelView extends JFrame {
         Dimension buttonDim = new Dimension(150, 30);
 
         JPanel availPanel = new JPanel();
-        promptLbl4 = new JLabel("Select a day to view: ");
+        promptLbl4 = new JLabel("Select a day to view (1-31): ");
 
         availTf = new JTextField();
         availTf.setColumns(2);
@@ -108,8 +109,12 @@ public class ViewHotelView extends JFrame {
         inputPanel.add(availTf);
         inputPanel.add(selectDayBtn);
 
+        availabilityTextArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(availabilityTextArea);
+
         availPanel.add(inputPanel, BorderLayout.CENTER);
         availPanel.add(returnBtn, BorderLayout.CENTER);
+        availPanel.add(scrollPane, BorderLayout.SOUTH);
 
         return availPanel;
     }
@@ -136,6 +141,10 @@ public class ViewHotelView extends JFrame {
 
     public void setReturnBtnListener(ActionListener actionListener) {
         returnBtn.addActionListener(actionListener);
+    }
+
+    public JTextArea getAvailabilityTA() {
+        return availabilityTextArea;
     }
 
     public String getAvailTfText() {

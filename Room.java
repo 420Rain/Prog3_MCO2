@@ -67,6 +67,10 @@ public class Room{
     return this.availability.get(index);
   }
 
+  public ArrayList<Boolean> getAvailability(){
+    return this.availability;
+  }
+
   /**
   * This method gets the array of Reservations of a Room instance
   * @return array of Reservations
