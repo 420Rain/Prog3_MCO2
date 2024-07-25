@@ -1,4 +1,7 @@
 import java.util.*;
+
+import javax.swing.JOptionPane;
+
 import java.awt.event.*;
 
 public class HotelReservationSystemController{
@@ -8,7 +11,7 @@ public class HotelReservationSystemController{
     public HotelReservationSystemController(HotelReservationSystemView hrsView, HotelReservationSystemModel hrsModel) {
         this.hrsView = hrsView;
         this.hrsModel = hrsModel;
-
+        
         this.hrsView.setCreateHotelBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,8 +50,13 @@ public class HotelReservationSystemController{
                         ActionListener actionListener = new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e){
-                                ViewHotelView viewHotelView = new ViewHotelView(hotel);
-                            }
+                                
+                                    ViewHotelModel vhModel = new ViewHotelModel(hotel);
+                                    ViewHotelView vhView = new ViewHotelView(hotel);
+        
+                                    ViewHotelController vhController = new ViewHotelController(vhModel, vhView);
+
+                            }              
                         };
                         hrsView.setButtonList(hotel.getName(), actionListener);
                     }
@@ -76,4 +84,6 @@ public class HotelReservationSystemController{
             }
         });
     }
+
+    
 }
