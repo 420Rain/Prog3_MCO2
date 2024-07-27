@@ -54,23 +54,29 @@ public class Hotel{
   * This method adds a Room object to the array of Room Objects in the Hotel
   * if number of Rooms is less than 50
   */
-  public void addRoom(){
+  /* REMOVE?
+  public boolean addRoom(){
     //Checks if a Room instance can still be added
     if(numRooms < 50){
       //Creates a Room instance
       hotelRooms.add(new Room("Room " + (numRooms + 1), price));
       numRooms++;
-      System.out.println("\nRoom Added Successfully");
+      //System.out.println("\nRoom Added Successfully");
+      System.out.println(numRooms);
+      System.out.println(name);
+      return true;
     }
     else {
-      System.out.println("\nCannot Add Room. Max Number of Rooms Reached");
+      //System.out.println("\nCannot Add Room. Max Number of Rooms Reached");
+      return false;
     }
-  }
+  }*/
 
   /**
   * This method removes a Room object from an array of Room Objects in the Hotel
   * @param roomName name of the Room object
   */
+  /* REMOVE?
   public void removeRoom(String roomName){
     //Loops through a Hotel's Rooms
     for(int i = 0; i < numRooms; i++){
@@ -91,7 +97,7 @@ public class Hotel{
       }
     }
     System.out.println("\nRoom Name Not Found");
-  }
+  }*/
 
   /**
   * This method gets the name of the Hotel
@@ -133,6 +139,10 @@ public class Hotel{
     return this.numRooms;
   }
 
+  public Room getRoom(int index){
+    return hotelRooms.get(index);
+  }
+
   /**
   * This method gets the array of Rooms of the Hotel
   * @return array of Rooms
@@ -153,11 +163,11 @@ public class Hotel{
   * This method changes the new base price of the Rooms in the Hotel
   * @param price base price of a Room
   */
-  public void setRoomPrice(double price){
+  public boolean setRoomPrice(double price){
     for(int i = 0; i < numRooms; i++){ //cause you can only change price if theres no reservations in all rooms
       if(!hotelRooms.get(i).getReservations().isEmpty()){
         System.out.println("\nCould Not Change Price. Some Rooms Have Reservations");
-        return;
+        return false;
       }
     }
 
@@ -168,6 +178,15 @@ public class Hotel{
     }
     
     System.out.println("\nSuccessfully Changed the Room Prices");
+    return true;
+  }
+
+  public void addNumRoom(){
+    this.numRooms++;
+  }
+
+  public void lessNumRoom(){
+    this.numRooms--;
   }
 
 }

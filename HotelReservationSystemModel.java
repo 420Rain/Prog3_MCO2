@@ -7,21 +7,21 @@ public class HotelReservationSystemModel {
         this.Hotels = new ArrayList<Hotel>();
     }
 
-    public boolean createHotel(String name, int numOfRooms){
+    public int createHotel(String name, int numOfRooms){
         //Checks if the new Hotel's name exists within the array of Hotels
         for(int i = 0; i < this.Hotels.size(); i++){
             if(name.equals(this.Hotels.get(i).getName())){
-                return false;
+                return -1;
             } 
         }
         //Checks if number of Rooms inputted by the User is within the Range
         if(numOfRooms < 1 || numOfRooms > 50){
-            return false;
+            return -2;
         }
         //Creates Hotel instance
         this.Hotels.add(new Hotel(name, numOfRooms, 1299.0));
 
-        return true;
+        return 1;
     }
 
     public ArrayList<Hotel> getHotelList() {

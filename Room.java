@@ -67,6 +67,14 @@ public class Room{
     return this.availability.get(index);
   }
 
+  public ArrayList<Boolean> getAvailability(){
+    return this.availability;
+  }
+
+  public void setAvailability(int index, boolean availability){
+    this.availability.set(index, availability);
+  }
+
   /**
   * This method gets the array of Reservations of a Room instance
   * @return array of Reservations
@@ -121,6 +129,7 @@ public class Room{
   * This method removes a Reservation instance from an array of Reservations
   * @param reservation a Reservation instance to be removed
   */
+  /* REMOVE?
   public void removeReservation(Reservation reservation){
     for(int i = 0; i < this.reservations.size(); i++){
       //finds the reservation of the guest name
@@ -140,6 +149,6 @@ public class Room{
     }
 
     System.out.println("\nGuest Name Not Found");
-  }
+  }*/
   
 }
