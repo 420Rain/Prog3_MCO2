@@ -71,13 +71,10 @@ public class Room{
     return this.availability;
   }
 
-<<<<<<< HEAD
   public void setAvailability(int index, boolean availability){
     this.availability.set(index, availability);
   }
 
-=======
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
   /**
   * This method gets the array of Reservations of a Room instance
   * @return array of Reservations
