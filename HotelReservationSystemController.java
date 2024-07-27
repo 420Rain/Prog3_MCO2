@@ -1,4 +1,7 @@
 import java.util.*;
+
+import javax.swing.JOptionPane;
+
 import java.awt.event.*;
 
 public class HotelReservationSystemController{
@@ -8,7 +11,7 @@ public class HotelReservationSystemController{
     public HotelReservationSystemController(HotelReservationSystemView hrsView, HotelReservationSystemModel hrsModel) {
         this.hrsView = hrsView;
         this.hrsModel = hrsModel;
-
+        
         this.hrsView.setCreateHotelBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,6 +46,10 @@ public class HotelReservationSystemController{
         this.hrsView.setViewHotelBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+<<<<<<< HEAD
+=======
+                String displayText = "";
+>>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
 
                 if(!hrsModel.getHotelList().isEmpty()){
                     hrsView.clearHotelButtons();
@@ -53,15 +60,27 @@ public class HotelReservationSystemController{
                         ActionListener actionListener = new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e){
+<<<<<<< HEAD
+=======
+                                
+>>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
                                     ViewHotelModel vhModel = new ViewHotelModel(hotel);
                                     ViewHotelView vhView = new ViewHotelView(hotel);
         
                                     ViewHotelController vhController = new ViewHotelController(vhModel, vhView);
+<<<<<<< HEAD
+=======
+
+>>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
                             }              
                         };
                         hrsView.setButtonList(hotel.getName(), actionListener);
                     }
+<<<<<<< HEAD
                     hrsView.selectHotel(0);
+=======
+                    hrsView.viewHotelDisplay();
+>>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
                 }
                 else{
                     hrsView.noHotelDisplay();
@@ -160,6 +179,7 @@ public class HotelReservationSystemController{
             }
         });
     }
+<<<<<<< HEAD
     /*public void addRoom(Hotel hotel){
         this.hrsView.setAddRoomBtn(new ActionListener() {
             @Override
@@ -258,4 +278,8 @@ public class HotelReservationSystemController{
         }
     }*/
 
+=======
+
+    
+>>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
 }
