@@ -46,10 +46,6 @@ public class HotelReservationSystemController{
         this.hrsView.setViewHotelBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-<<<<<<< HEAD
-=======
-                String displayText = "";
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
 
                 if(!hrsModel.getHotelList().isEmpty()){
                     hrsView.clearHotelButtons();
@@ -60,27 +56,15 @@ public class HotelReservationSystemController{
                         ActionListener actionListener = new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e){
-<<<<<<< HEAD
-=======
-                                
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
                                     ViewHotelModel vhModel = new ViewHotelModel(hotel);
                                     ViewHotelView vhView = new ViewHotelView(hotel);
         
                                     ViewHotelController vhController = new ViewHotelController(vhModel, vhView);
-<<<<<<< HEAD
-=======
-
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
                             }              
                         };
                         hrsView.setButtonList(hotel.getName(), actionListener);
                     }
-<<<<<<< HEAD
                     hrsView.selectHotel(0);
-=======
-                    hrsView.viewHotelDisplay();
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
                 }
                 else{
                     hrsView.noHotelDisplay();
@@ -171,6 +155,41 @@ public class HotelReservationSystemController{
                 hrsView.closeManageHFrame();
             }
         });*/
+
+        this.hrsView.setBookRoomListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                if(!hrsModel.getHotelList().isEmpty()){
+                    hrsView.clearHotelButtons();
+                    Iterator<Hotel> hotels = hrsModel.getHotelList().iterator();
+                    
+                    while(hotels.hasNext()){
+                        Hotel hotel = hotels.next();
+                        ActionListener actionListener = new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e){
+                                    BookRoomModel bookRoomModel = new BookRoomModel(hotel);
+                                    BookRoomView bookRoomView = new BookRoomView(hotel);
+                                    if(bookRoomModel.availableRooms(hotel)){
+                                        BookRoomController bookRoomController = new BookRoomController(bookRoomModel, bookRoomView);
+                                        hrsView.closeSelectHFrame();
+                                    }
+                                    else{
+                                        JOptionPane.showMessageDialog(null, "No Rooms Available in this Hotel !", "Error", JOptionPane.ERROR_MESSAGE);
+                                    }
+                            }              
+                        };
+                        hrsView.setButtonList(hotel.getName(), actionListener);
+                    }
+                    hrsView.selectHotel(2);
+                }
+                else{
+                    hrsView.noHotelDisplay();
+                }
+				
+            }
+        });
         
         this.hrsView.setExitBtnListener(new ActionListener() {
             @Override
@@ -179,7 +198,6 @@ public class HotelReservationSystemController{
             }
         });
     }
-<<<<<<< HEAD
     /*public void addRoom(Hotel hotel){
         this.hrsView.setAddRoomBtn(new ActionListener() {
             @Override
@@ -278,8 +296,4 @@ public class HotelReservationSystemController{
         }
     }*/
 
-=======
-
-    
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
 }

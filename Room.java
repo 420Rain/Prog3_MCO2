@@ -97,6 +97,7 @@ public class Room{
   * @return true {check in and check out dates are valid}
   * false {check in and check out days are invalid and they overlap other reservation dates}
   */
+  /* REMOVE?
   public boolean addReservation(Reservation reservation){
     int checkIn = reservation.getCheckIn() - 1;
     int checkOut = reservation.getCheckOut() - 1;
@@ -124,7 +125,7 @@ public class Room{
     
     System.out.println("\nReservation Successful\n");
     return true;
-  }
+  }*/
   /**
   * This method removes a Reservation instance from an array of Reservations
   * @param reservation a Reservation instance to be removed

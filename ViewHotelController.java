@@ -116,15 +116,18 @@ public class ViewHotelController {
             @Override
             public void actionPerformed(ActionEvent e){
                 String guestName = vhView.getGuestTfText();
-                int roomIndex = -1;
-                int resIndex = -1;
+                Integer roomIndex[] = {-1};
+                Integer resIndex[] = {-1};
+
                 if(vhModel.findGuestRes(guestName, roomIndex, resIndex)){
-                    Reservation reservation = vhModel.getHotel().getRooms().get(roomIndex).getReservations().get(resIndex);
+                    Reservation reservation = vhModel.getHotel().getRooms().get(roomIndex[0]).getReservations().get(resIndex[0]);
                     vhView.getNPlaceHolder().setText(reservation.getGuestName());
                     vhView.getResPlaceHolder().setText(reservation.getRoom().getName());
                     vhView.getIPlaceHolder().setText("Day " + reservation.getCheckIn());
                     vhView.getOPlaceHolder().setText("Day " + reservation.getCheckOut());
                     vhView.getTpPlaceHolder().setText("Php " + reservation.getTotalPrice());
+
+                    vhView.showView("displayReservationView");
                 }
             }
         });

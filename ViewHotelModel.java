@@ -50,7 +50,7 @@ public class ViewHotelModel {
         return null;
     }
 
-    public boolean findGuestRes(String name, int roomIndex, int resIndex){
+    public boolean findGuestRes(String name, Integer roomIndex[], Integer resIndex[]){
         ArrayList<Room> roomList = hotelViewed.getRooms();
 
         for(int i = 0; i < roomList.size(); i++){
@@ -58,8 +58,8 @@ public class ViewHotelModel {
             for(int j = 0; j < resList.size(); j++){
                 Reservation reservation = resList.get(j);
                 if(reservation.getGuestName().equals(name)){
-                    roomIndex = i;
-                    resIndex = j;
+                    roomIndex[0] = i;
+                    resIndex[0] = j;
                     return true;
                 }
             }

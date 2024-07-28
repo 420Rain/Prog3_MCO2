@@ -95,6 +95,7 @@ public class ViewHotelView extends JFrame {
         mainPanel.add(createSelectRoomInfo(), "selectRoomView");
         mainPanel.add(createDisplayRoomInfo(), "displayRoomView");
         mainPanel.add(createReservationSelect(), "selectReservationView");
+        mainPanel.add(createReservationDisplay(), "displayReservationView");
 
         this.add(mainPanel, BorderLayout.CENTER);
     }
@@ -281,15 +282,15 @@ public class ViewHotelView extends JFrame {
         gbc.insets = new Insets(5, 5, 5, 5);
 
         JLabel name = new JLabel("GuestName: ");
-        JLabel nPlaceholder = new JLabel("");
+        nPlaceholder = new JLabel();
         JLabel room = new JLabel("Room: ");
-        JLabel resPlaceholder = new JLabel("");
+        resPlaceholder = new JLabel();
         JLabel in = new JLabel("Check-In Day: ");
-        JLabel iPlaceholder = new JLabel("");
+        iPlaceholder = new JLabel();
         JLabel out = new JLabel("Check-Out Day: ");
-        JLabel oPlaceholder = new JLabel("");
+        oPlaceholder = new JLabel();
         JLabel tp = new JLabel("Total price for Reservation: ");
-        JLabel tpPlaceholder = new JLabel("");
+        tpPlaceholder = new JLabel();
 
         gbc.gridx = 0;
         gbc.gridy = 0;
