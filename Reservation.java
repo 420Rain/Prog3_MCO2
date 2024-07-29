@@ -44,7 +44,7 @@ public class Reservation{
       this.checkIn = checkIn;
       this.checkOut = checkOut;
       this.roomInfo = room;
-      this.totalPrice = room.getPrice()*(checkOut - checkIn);
+      this.totalPrice = 0.0;
     }
     
     /**
@@ -85,5 +85,9 @@ public class Reservation{
     */
     public double getTotalPrice(){
       return this.totalPrice;
+    }
+
+    public void setTotalPrice(double Price){
+      this.totalPrice = Price;
     }
   }

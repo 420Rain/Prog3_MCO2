@@ -91,6 +91,23 @@ public class ManageHotelModel{
         return hotel.setRoomPrice(price);
     }
 
+    public void setModifier(Integer day, Double percent, Hotel hotel){
+        ArrayList<Integer> dayList = hotel.getMarkedDayList();
+        ArrayList<Double> doubleList = hotel.getMarkedPriceList();
+        Iterator<Integer> dayIterator = dayList.iterator();
+
+        int i = 0;
+        while(dayIterator.hasNext()){
+            if(dayIterator.next() == day){
+                dayList.remove(i);
+                doubleList.remove(i);
+            }
+            i++;
+        }
+
+        hotel.setDayPriceModifier(day, percent);
+    }
+
     /*public void removeReservation(Room room, Reservation reservation){
         room.removeReservation(reservation);
     }*/
@@ -104,7 +121,7 @@ public class ManageHotelModel{
     
                 //Removes reservation by setting the availability of the range of days to true
                 for(int j = checkIn; j < checkOut; j++){
-                    room.setAvailability().set(j, true);
+                    room.setAvailability(j, true);
                 }
     
                 room.getReservations().remove(i);

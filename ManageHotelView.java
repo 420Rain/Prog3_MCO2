@@ -7,13 +7,14 @@ import javax.swing.plaf.BorderUIResource;
 import java.util.*;
 
 public class ManageHotelView extends JFrame{
-    private JFrame updPriceFrame, nameFrame, roomFrame, removeRsvFrame, guestFrame;
+    private JFrame updPriceFrame, nameFrame, roomFrame, removeRsvFrame, guestFrame, modFrame;
     private JPanel northPanel, centerPanel;
     private JLabel logLbl, nameLbl, promptLbl, promptLbl2, feedbackLbl;
-    private JButton changeNameBtn, addRoomBtn, removeRoomBtn, updPriceBtn, removeRsvBtn, removeHotelBtn, backBtn;
+    private JButton changeNameBtn, addRoomBtn, removeRoomBtn, updPriceBtn, dpModifyBtn, removeRsvBtn, removeHotelBtn, backBtn;
     private ArrayList<JButton> roomList = new ArrayList<JButton>();
     private JTextField inputTf;
-    private JButton priceBtn, nameBtn, removeOneBtn, removeAllBtn, guestBtn;
+    private JButton priceBtn, nameBtn, removeOneBtn, removeAllBtn, guestBtn, applyMdBtn;
+    private JComboBox<Integer> daysCB;
     
     public ManageHotelView(){
         super("Manage Hotel");
@@ -26,7 +27,7 @@ public class ManageHotelView extends JFrame{
         this.changeNameBtn = new JButton("Change Hotel Name");
         this.changeNameBtn.setPreferredSize(buttonDim);
 
-        this.nameBtn = new JButton("Change Hotel");
+        this.nameBtn = new JButton("Change Name");
         this.nameBtn.setPreferredSize(new Dimension(120, 30));
   
         this.addRoomBtn = new JButton("Add a Room");
@@ -40,7 +41,13 @@ public class ManageHotelView extends JFrame{
 
         this.priceBtn = new JButton("Change Price");
         this.priceBtn.setPreferredSize(new Dimension(120, 30));
-  
+
+        this.dpModifyBtn = new JButton("Modify Date Pricing");
+        this.dpModifyBtn.setPreferredSize(buttonDim);
+
+        this.applyMdBtn = new JButton("Apply Modification");
+        this.applyMdBtn.setPreferredSize(new Dimension(150, 30));
+
         this.removeRsvBtn = new JButton("Cancel A Reservation");
         this.removeRsvBtn.setPreferredSize(buttonDim);
 
@@ -98,6 +105,9 @@ public class ManageHotelView extends JFrame{
 
         gbc.gridy++;
         centerPanel.add(updPriceBtn, gbc);
+
+        gbc.gridy++;
+        centerPanel.add(dpModifyBtn, gbc);
 
         gbc.gridy++;
         centerPanel.add(removeRsvBtn, gbc);
@@ -250,6 +260,52 @@ public class ManageHotelView extends JFrame{
         updPriceFrame.setResizable(false);
     }
 
+    public void modifyDpDisplay(){
+        modFrame = new JFrame("Date Price Modifier");
+        modFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);    
+        modFrame.setLayout(new BorderLayout());
+        modFrame.setSize(new Dimension(500, 150));
+
+        promptLbl = new JLabel("Select a day to place the modifier", SwingConstants.CENTER);
+        promptLbl.setBorder(new EmptyBorder(10, 10, 10, 10));
+        modFrame.add(promptLbl, BorderLayout.NORTH);
+
+        daysCB = new JComboBox<Integer>();
+
+        for(int i = 1; i < 32; i++){
+            daysCB.addItem(i);
+        }
+        modFrame.add(daysCB, BorderLayout.CENTER);
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridBagLayout());
+        
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 10, 5, 10);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+
+        inputTf = new JTextField(3);
+
+        gbc.gridx++;
+        centerPanel.add(new JLabel("Place desired percentage: "), gbc);
+
+        gbc.gridx++;
+        centerPanel.add(inputTf, gbc);
+
+        gbc.gridx++;
+        centerPanel.add(new JLabel("%"), gbc);
+
+        gbc.gridx++;
+        centerPanel.add(applyMdBtn, gbc);
+
+        modFrame.add(centerPanel, BorderLayout.SOUTH);
+
+        modFrame.setLocationRelativeTo(null);
+        modFrame.setVisible(true);
+        modFrame.setResizable(false);
+    }
+
     public void removeRsvDisplay(Room room){
         removeRsvFrame = new JFrame("Remove Room Reservation");
         removeRsvFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -346,6 +402,14 @@ public class ManageHotelView extends JFrame{
     public void setPriceBtn(ActionListener actionListener){
         this.priceBtn.addActionListener(actionListener);
     }
+
+    public void setDpModifyBtn(ActionListener actionListener){
+        this.dpModifyBtn.addActionListener(actionListener);
+    }
+
+    public void setApplyMdBtn(ActionListener actionListener){
+        this.applyMdBtn.addActionListener(actionListener);
+    }
   
     public void setRemoveRsvBtn(ActionListener actionListener){
         this.removeRsvBtn.addActionListener(actionListener);
@@ -411,6 +475,10 @@ public class ManageHotelView extends JFrame{
         return this.inputTf.getText();
     }
 
+    public Integer getSelectedDay() {
+        return (Integer) this.daysCB.getSelectedItem();
+    }
+
     //frame stuff
     public void closeManageHFrame(){
         this.dispose();
@@ -422,6 +490,10 @@ public class ManageHotelView extends JFrame{
 
     public void closeUpdPriceFrame(){
         this.updPriceFrame.dispose();
+    }
+
+    public void closeModFrame(){
+        this.modFrame.dispose();
     }
 
     public void closeRoomFrame(){

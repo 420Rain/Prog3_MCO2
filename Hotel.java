@@ -32,6 +32,10 @@ public class Hotel{
     */
     private ArrayList<Room> hotelRooms;
 
+    private ArrayList<Integer> markedDayList;
+
+    private ArrayList<Double> markedPriceList;
+
   /**
   * This method creates a new Hotel Instance
   * @param name the name of the hotel
@@ -43,6 +47,8 @@ public class Hotel{
    this.price = roomPrice;
    this.numRooms = numOfRooms;
    this.hotelRooms = new ArrayList<Room>();
+   this.markedDayList = new ArrayList<Integer>();
+   this.markedPriceList = new ArrayList<Double>();
 
    //Creates Room instances until the numOfRooms limit
    for(int i = 0; i < numOfRooms; i++){
@@ -179,6 +185,19 @@ public class Hotel{
     
     System.out.println("\nSuccessfully Changed the Room Prices");
     return true;
+  }
+
+  public void setDayPriceModifier(Integer day, double price){
+    this.markedDayList.add(day);
+    this.markedPriceList.add(price);
+  }
+
+  public ArrayList<Integer> getMarkedDayList(){
+    return this.markedDayList;
+  }
+
+  public ArrayList<Double> getMarkedPriceList(){
+    return this.markedPriceList;
   }
 
   public void addNumRoom(){

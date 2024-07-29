@@ -79,8 +79,16 @@ public class BookRoomModel {
 
     public int addReservation(Reservation reservation, Room room){
         ArrayList<Boolean> roomAvailable = room.getAvailability();
+
+        ArrayList<Integer> dayList = chosenHotel.getMarkedDayList();
+        ArrayList<Double> percenList = chosenHotel.getMarkedPriceList();
+        Iterator<Integer> dayIterator = dayList.iterator();
+
         int in = reservation.getCheckIn();
         int out = reservation.getCheckOut();
+
+        int count = 0;
+        double totalPrice = 0.0;
 
         if (in < 0 || out > 31 || in >= out || in == 32 || out == 0){
             return -1;
@@ -94,7 +102,16 @@ public class BookRoomModel {
 
         for(int i = in; i < out; i++){
             roomAvailable.set(i, false);
+            while(dayIterator.hasNext()){
+                if(dayIterator.next() == i){
+                    totalPrice += percenList.get(count) * room.getPrice();
+                    count++;
+                }
+            }
         }
+
+        totalPrice += room.getPrice()*((out-in)-count);
+        reservation.setTotalPrice(totalPrice);
 
         room.getReservations().add(reservation);
 

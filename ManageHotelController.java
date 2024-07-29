@@ -1,6 +1,9 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 public class ManageHotelController{
     private ManageHotelModel MHmodel;
     private ManageHotelView MHview;
@@ -102,6 +105,36 @@ public class ManageHotelController{
                 } catch (NumberFormatException ex) {
                     MHview.setFeedbackLblText("Invalid Price. Please Enter a Valid Number");
                 }  
+            }
+        });
+
+        this.MHview.setDpModifyBtn(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                MHview.modifyDpDisplay();
+            }
+        });
+
+        this.MHview.setApplyMdBtn(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                Integer day = MHview.getSelectedDay();
+                Double percent = Double.parseDouble(MHview.getInputTf())/100.00;
+
+                if(day > 0 && day < 32){
+                    if(percent > 0.4999 && percent < 1.5100){
+                        MHmodel.setModifier(day, percent, hotel);
+                        JOptionPane.showMessageDialog(null, "Modifier Set !", "SUCCESS", 1);
+                        MHview.closeModFrame();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Not within range of 50% - 150%", "ERROR", 0);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Not within range of 1 - 31", "ERROR", 0);
+                }
+                
             }
         });
 
