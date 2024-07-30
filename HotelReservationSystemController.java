@@ -28,7 +28,6 @@ public class HotelReservationSystemController{
                 int result = hrsModel.createHotel(hotelName, numRooms);
 
                 if(result == 1){
-					//hrsView.setFeedbackLblText("Hotel Created Succesfully !");
 					hrsView.clearTextFields();
                     hrsView.closeCreateHFrame();
 				} 
@@ -102,13 +101,6 @@ public class HotelReservationSystemController{
                 }
             }
         });
-
-        /*this.hrsView.setBackBtn(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                hrsView.closeManageHFrame();
-            }
-        });*/
 
         this.hrsView.setBookRoomListener(new ActionListener() {
             @Override

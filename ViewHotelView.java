@@ -12,7 +12,7 @@ public class ViewHotelView extends JFrame {
     private JButton roomAvailBtn, roomDetailBtn, reservationsBtn, backBtn;
     private JButton returnBtn, returnBtn2, returnBtn3, selectDayBtn, selectRoomBtn, returnSelectBtn, selectGuestBtn, returnSelectBtn2;
     private JTextField availTf, roomTf, guestTf;
-    private JTextArea availabilityTextArea, displayRoomsTextArea;
+    private JTextArea availabilityTextArea, displayRoomsTextArea, displayPBTextArea;
     private JPanel mainPanel, daysPanel;
     private CardLayout cardLayout;
     private ArrayList<JLabel> labelList;    
@@ -43,8 +43,8 @@ public class ViewHotelView extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
-        gbc.anchor = GridBagConstraints.NORTH; // align to the top
-        gbc.insets = new Insets(5, 10, 5, 10); // space around the buttons
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.insets = new Insets(5, 10, 5, 10);
 
         promptLbl = new JLabel("Please select an option!");
         westPanel.add(promptLbl, gbc);
@@ -175,74 +175,6 @@ public class ViewHotelView extends JFrame {
         return roomPanel;
     }
 
-    /*public JPanel createDisplayRoomInfo() {
-        Dimension buttonDim = new Dimension(150, 30);
-    
-        JPanel roomPanel2 = new JPanel(new BorderLayout());
-    
-        JPanel textPanel = new JPanel(new GridLayout(3, 2, 10, 10));
-        rLabel = new JLabel("Room Name: ");
-        rPlaceholder = new JLabel();
-        textPanel.add(rLabel);
-        textPanel.add(rPlaceholder);
-        tLabel = new JLabel("Room Type: ");
-        tPlaceholder = new JLabel();
-        textPanel.add(tLabel);
-        textPanel.add(tPlaceholder);
-        pLabel = new JLabel("Room Price: ");
-        pPlaceholder = new JLabel();
-        textPanel.add(pLabel);
-        textPanel.add(pPlaceholder);
-    
-        roomPanel2.add(textPanel, BorderLayout.NORTH);
-    
-        JPanel textPanel2 = new JPanel();
-        textPanel2.setLayout(new BorderLayout());
-    
-        JPanel legendPanel = new JPanel(new GridLayout(1, 4, 10, 10));
-        dateLabel = new JLabel("Dates Available: ");
-        legendPanel.add(dateLabel);
-    
-        JLabel availableBox = new JLabel();
-        availableBox.setPreferredSize(new Dimension(10, 10));
-        availableBox.setBackground(new Color(0, 128, 0));
-        availableBox.setOpaque(true);
-        legendPanel.add(availableBox);
-    
-        JLabel textA = new JLabel(" - Available");
-        legendPanel.add(textA);
-    
-        JLabel unavailableBox = new JLabel();
-        unavailableBox.setPreferredSize(new Dimension(10, 10));
-        unavailableBox.setBackground(new Color(128, 0, 0));
-        unavailableBox.setOpaque(true);
-        legendPanel.add(unavailableBox);
-    
-        JLabel textU = new JLabel(" - Unavailable");
-        legendPanel.add(textU);
-    
-        textPanel2.add(legendPanel, BorderLayout.NORTH);
-    
-        JPanel daysPanel = new JPanel(new GridLayout(5, 7, 5, 5));
-    
-        daysPanel.removeAll();
-    
-        for (JLabel label : labelList) {
-            daysPanel.add(label);
-        }
-    
-        textPanel2.add(daysPanel, BorderLayout.CENTER);
-    
-        roomPanel2.add(textPanel2, BorderLayout.CENTER);
-    
-        returnSelectBtn = new JButton("Return to Selection");
-        returnSelectBtn.setPreferredSize(buttonDim);
-    
-        roomPanel2.add(returnSelectBtn, BorderLayout.SOUTH);
-    
-        return roomPanel2;
-    }*/
-
     public JPanel createDisplayRoomInfo() {
         Dimension buttonDim = new Dimension(150, 30);
         
@@ -293,17 +225,8 @@ public class ViewHotelView extends JFrame {
         
         daysPanel = new JPanel(new GridLayout(5, 7, 5, 5));
         
-        // Ensure labelList is correctly populated
-        labelList.clear(); // Clear any existing labels
-        /*for (int i = 0; i < 31; i++) { // Assuming 31 days, adjust if necessary
-            JLabel label = new JLabel("" + (i + 1), SwingConstants.CENTER);
-            label.setPreferredSize(new Dimension(50, 50));
-            // Default to available, adjust as needed
-            setGreen(label);
-            labelList.add(label);
-        }*/
+        labelList.clear();
         
-        // Add labels to daysPanel
         for (JLabel label : labelList) {
             daysPanel.add(label);
         }
@@ -348,66 +271,85 @@ public class ViewHotelView extends JFrame {
         return selectGuest;
     }
 
-    public JPanel createReservationDisplay(){
-        //Dimension buttonDim = new Dimension(150, 30);
-
-        JPanel displayPanel = new JPanel();
+    public JPanel createReservationDisplay() {
+        JPanel displayPanel = new JPanel(new BorderLayout());
+    
+        JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JLabel titleLabel = new JLabel("Viewing Reservation");
+        titlePanel.add(titleLabel);
+        displayPanel.add(titlePanel, BorderLayout.NORTH);
         
-        JPanel necessaryInfo = new JPanel();
-        necessaryInfo.setLayout(new GridBagLayout());
+        JPanel necessaryInfo = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
-
-        JLabel name = new JLabel("GuestName: ");
-        nPlaceholder = new JLabel();
-        JLabel room = new JLabel("Room: ");
-        resPlaceholder = new JLabel();
-        JLabel in = new JLabel("Check-In Day: ");
-        iPlaceholder = new JLabel();
-        JLabel out = new JLabel("Check-Out Day: ");
-        oPlaceholder = new JLabel();
-        JLabel tp = new JLabel("Total price for Reservation: ");
-        tpPlaceholder = new JLabel();
-
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.NONE;
+    
+        JLabel nameLabel = new JLabel("Guest Name: ");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
-        necessaryInfo.add(name, gbc);
-
+        necessaryInfo.add(nameLabel, gbc);
+    
+        nPlaceholder = new JLabel();
         gbc.gridx = 1;
         necessaryInfo.add(nPlaceholder, gbc);
-
+    
+        JLabel roomLabel = new JLabel("Room: ");
+        gbc.gridx = 2;
+        necessaryInfo.add(roomLabel, gbc);
+    
+        resPlaceholder = new JLabel();
+        gbc.gridx = 3;
+        necessaryInfo.add(resPlaceholder, gbc);
+    
+        JLabel checkInLabel = new JLabel("Check-In Day: ");
         gbc.gridx = 0;
         gbc.gridy = 1;
-        necessaryInfo.add(room, gbc);
-
-        gbc.gridx = 1;
-        necessaryInfo.add(resPlaceholder, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        necessaryInfo.add(in, gbc);
-
+        necessaryInfo.add(checkInLabel, gbc);
+    
+        iPlaceholder = new JLabel();
         gbc.gridx = 1;
         necessaryInfo.add(iPlaceholder, gbc);
-
+    
+        JLabel checkOutLabel = new JLabel("Check-Out Day: ");
+        gbc.gridx = 2;
+        necessaryInfo.add(checkOutLabel, gbc);
+    
+        oPlaceholder = new JLabel();
+        gbc.gridx = 3;
+        necessaryInfo.add(oPlaceholder, gbc);
+    
+        JLabel totalPriceLabel = new JLabel("Total Price for Reservation: ");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        necessaryInfo.add(totalPriceLabel, gbc);
+    
+        tpPlaceholder = new JLabel();
+        gbc.gridx = 1;
+        gbc.gridwidth = 3;
+        necessaryInfo.add(tpPlaceholder, gbc);
+    
+        JLabel priceBreakdownLabel = new JLabel("Price Breakdown: ");
         gbc.gridx = 0;
         gbc.gridy = 3;
-        necessaryInfo.add(out, gbc);
-
-        gbc.gridx = 1;
-        necessaryInfo.add(oPlaceholder, gbc);
-
-        gbc.gridx = 0;
+        gbc.gridwidth = 4;
+        necessaryInfo.add(priceBreakdownLabel, gbc);
+    
         gbc.gridy = 4;
-        gbc.gridwidth = 2;
-        gbc.anchor = GridBagConstraints.CENTER;
-        necessaryInfo.add(tp, gbc);
+        displayPBTextArea = new JTextArea(5, 40);
+        displayPBTextArea.setEditable(false);
+        displayPBTextArea.setFocusable(false);
+        JScrollPane scrollPane = new JScrollPane(displayPBTextArea);
+        necessaryInfo.add(scrollPane, gbc);
+        displayPanel.add(necessaryInfo, BorderLayout.CENTER);
 
-        gbc.gridy = 5;
-        necessaryInfo.add(tpPlaceholder, gbc);
-        displayPanel.add(necessaryInfo, BorderLayout.NORTH);
-
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        returnSelectBtn2 = new JButton("Return to Select Guest");
+        returnSelectBtn2.setPreferredSize(new Dimension(200, 30));
+        buttonPanel.add(returnSelectBtn2);
+        displayPanel.add(buttonPanel, BorderLayout.SOUTH);
+    
         return displayPanel;
     }
 
@@ -455,9 +397,9 @@ public class ViewHotelView extends JFrame {
         returnSelectBtn.addActionListener(actionListener);
     }
 
-    /*public void setReturnSelectBtn2(ActionListener actionListener){
+    public void setReturnSelectBtn2(ActionListener actionListener){
         returnSelectBtn2.addActionListener(actionListener);
-    }*/
+    }
 
     public void setGreen(JLabel label){
         label.setBackground(new Color(255, 255, 255));
@@ -479,9 +421,9 @@ public class ViewHotelView extends JFrame {
         return pPlaceholder;
     }
 
-    /*public JLabel getTPlaceHolder(){
+    public JLabel getTPlaceholder(){
         return tPlaceholder;
-    }*/
+    }
 
     public ArrayList<JLabel> getLabelList(){
         return labelList;
@@ -534,6 +476,10 @@ public class ViewHotelView extends JFrame {
 
     public void showView(String panelName) {
         cardLayout.show(mainPanel, panelName);
+    }
+
+    public JTextArea getDisplayPbTA(){
+        return displayPBTextArea;
     }
 
     public JPanel getDaysPanel(){

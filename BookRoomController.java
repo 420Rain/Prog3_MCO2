@@ -49,7 +49,7 @@ public class BookRoomController {
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Room booked succesfully!", "Book a Room", n);
-                    brModel.checkDiscount(discountCode, reservation);
+
                     brView.closePopUpFrame();
                 }
             }

@@ -7,7 +7,7 @@ import javax.swing.*;
 public class BookRoomView extends JFrame{
     private JDialog popUp;
     private JButton selectRoomBtn, bookBtn, returnMenuBtn;
-    private JTextField selectRoomTf, nameTf, inTf, outTf, typeTf, discountTf;
+    private JTextField selectRoomTf, nameTf, inTf, outTf, discountTf;
     private Hotel hotel;
 
     public BookRoomView(Hotel hotel) {
@@ -24,51 +24,6 @@ public class BookRoomView extends JFrame{
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
-    /*public void initialize(){
-        JPanel roomPanel = new JPanel();
-        JTextArea roomList = new JTextArea(10, 40);
-        roomList.setEditable(false);
-        roomList.setFocusable(false);
-
-        Iterator<Room> hotelRooms = hotel.getRooms().iterator();
-        int count = 0;
-        roomList.setText("");
-
-        while(hotelRooms.hasNext()){
-        count++;
-        Room room = hotelRooms.next();
-        roomList.append(String.format("%-15s", room.getName()));
-            if(count % 7 == 0){
-                roomList.append("\n");
-            }else if(count < 10){
-                roomList.append(" ");
-            }
-        }
-
-        roomPanel.add(roomList, BorderLayout.CENTER);
-
-        JPanel inputPanel = new JPanel();
-        JLabel label = new JLabel("Select a room to book: ");
-
-        selectRoomTf = new JTextField();
-        selectRoomTf.setColumns(8);
-
-        selectRoomBtn = new JButton("Select");
-        selectRoomBtn.setPreferredSize(new Dimension(150, 30));
-
-        returnMenuBtn = new JButton("Return to Main Menu");
-        returnMenuBtn.setPreferredSize(new Dimension(150, 30));
-
-        inputPanel.add(label, BorderLayout.CENTER);
-        inputPanel.add(selectRoomTf, BorderLayout.CENTER);
-        inputPanel.add(selectRoomBtn, BorderLayout.CENTER);
-        inputPanel.add(returnMenuBtn, BorderLayout.CENTER);
-
-        roomPanel.add(inputPanel, BorderLayout.SOUTH);
-
-        this.add(roomPanel, BorderLayout.CENTER);
-    }*/
 
     public void initialize(){
         //Center panel

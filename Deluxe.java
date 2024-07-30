@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Deluxe extends Room{
 
     private double priceDeluxe;
@@ -15,5 +17,10 @@ public class Deluxe extends Room{
     @Override
     public double getPrice(){
         return this.priceDeluxe;
+    }
+
+    @Override
+    public ArrayList<Reservation> getReservations(){
+        return super.getReservations();
     }
 }

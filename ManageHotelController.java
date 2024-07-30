@@ -1,9 +1,5 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 public class ManageHotelController{
@@ -170,100 +166,8 @@ public class ManageHotelController{
                 else{
                     JOptionPane.showMessageDialog(null, "Not within range of 1 - 31", "ERROR", 0);
                 }
-<<<<<<< HEAD
-
-=======
-                
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
             }
         });
-
-        /*this.MHview.setRemoveRsvBtn(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                MHview.clearHotelButtons();
-                    for(Room room: hotel.getRooms()){
-                        MHview.setButtonList(room.getName(), new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e){
-                                if(room.getReservations().isEmpty()){
-                                    MHview.closeRoomFrame();
-                                    MHview.removeRsvDisplay(room);
-                                    removeOneRsv(room);
-                                    removeAllRsv(room);
-                                }
-                                else{
-                                    MHview.setFeedbackLblText("Selected Room Has No Reservations");
-                                }
-                            }
-                        });
-                    }
-                MHview.roomsDisplay(1);
-            }
-        });*/
-
-        /*this.MHview.setRemoveRsvBtn(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                MHview.clearHotelButtons();
-                for(Room room: hotel.getRooms()){
-                    MHview.setButtonList(room.getName(), new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e){
-                            if(room.getReservations().isEmpty()){
-                                MHview.closeRoomFrame();
-                                MHview.removeRsvDisplay(room);
-                                MHview.setRemoveOneBtn(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e){
-                                        MHview.findGuestDisplay();
-                                        MHview.closeRemoveRsvFrame();
-                                        MHview.setGuestBtn(new ActionListener() {
-                                            @Override
-                                            public void actionPerformed(ActionEvent e){
-                                                String name = MHview.getInputTf();
-                                                int reservationIndex = -1;
-                                                
-                                                for(int i = 0; i < room.getReservations().size(); i++){
-                                                    if(name.equals(room.getReservations().get(i).getGuestName())){
-                                                        reservationIndex = i;
-                                                        break;
-                                                    }
-                                                }
-                        
-                                                if(reservationIndex > -1){
-                                                    MHmodel.removeReservation(room, room.getReservations().get(reservationIndex));
-                                                    MHview.setLogLblText("Successfully Removed " + name + "'s Reservation");
-                                                    MHview.closeGuestFrame();
-                                                }
-                                                else{
-                                                    MHview.setFeedbackLblText("Guest Name Not Found");
-                                                }
-                                            }
-                                        });
-                                    }
-                                });
-                                MHview.setRemoveAllBtn(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e){
-                                        for(int i = 0; i < room.getReservations().size(); i++){
-                                            MHmodel.removeReservation(room, room.getReservations().get(i));
-                                        }
-                                        MHview.closeRemoveRsvFrame();
-                                        MHview.setLogLblText("Removed All Reservations in " + room.getName());
-                                    }
-                                });
-
-                            }
-                            else{
-                                MHview.setFeedbackLblText("Selected Room Has No Reservations");
-                            }
-                        }
-                    });
-                }
-                MHview.roomsDisplay(1);
-            }
-        });*/
 
         this.MHview.setRemoveRsvBtn(new ActionListener() {
             @Override
@@ -278,9 +182,6 @@ public class ManageHotelController{
                                 MHview.closeRoomFrame();
                                 MHview.removeRsvDisplay(room);
 
-                                //RoomReservationManager reservationManager = new RoomReservationManager(MHmodel, MHview, room);
-                                //reservationManager.removeOneRsv();
-                                //reservationManager.removeAllRsv();
                                 MHview.clearRemoveReservationButtons();
 
                                 removeOneRsv(room);

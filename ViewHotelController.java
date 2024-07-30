@@ -124,11 +124,19 @@ public class ViewHotelController {
         
                 JLabel name = vhView.getRPlaceHolder();
                 JLabel price = vhView.getPPlaceHolder();
-                //JLabel type = vhView.getTPlaceholder();
+                JLabel type = vhView.getTPlaceholder();
         
                 name.setText(room.getName());
                 price.setText(String.valueOf(room.getPrice()));
-                //type.setText(room.getType());
+                if(room instanceof Deluxe){
+                    type.setText("Deluxe");
+                }
+                else if(room instanceof Executive){
+                    type.setText("Executive");
+                }
+                else{
+                    type.setText("Standard");
+                }
         
                 labelList.clear();
         
@@ -159,6 +167,7 @@ public class ViewHotelController {
         this.vhView.setSelectGuestBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                JTextArea textArea = vhView.getDisplayPbTA();
                 String guestName = vhView.getGuestTfText();
                 Integer roomIndex[] = {-1};
                 Integer resIndex[] = {-1};
@@ -169,7 +178,20 @@ public class ViewHotelController {
                     vhView.getResPlaceHolder().setText(reservation.getRoom().getName());
                     vhView.getIPlaceHolder().setText("Day " + reservation.getCheckIn());
                     vhView.getOPlaceHolder().setText("Day " + reservation.getCheckOut());
-                    vhView.getTpPlaceHolder().setText("Php " + reservation.getTotalPrice());
+                    if(!reservation.getDiscountCode().equals(null)){
+                        vhView.getTpPlaceHolder().setText("Php " + reservation.getTotalPrice());
+                    }
+                    else{
+                        vhView.getTpPlaceHolder().setText("Php " + reservation.getTotalPrice() + " (Discount applied !)");
+                    }
+
+                    Iterator<String> pbIterator = reservation.getPriceBreakdown().iterator();
+                    
+                    textArea.setText("");
+
+                    while(pbIterator.hasNext()){
+                        textArea.append(pbIterator.next() + "\n");
+                    }
 
                     vhView.showView("displayReservationView");
                 }
@@ -204,11 +226,11 @@ public class ViewHotelController {
             }
         });
 
-        /*this.vhView.setReturnSelectBtn2(new ActionListener() {
+        this.vhView.setReturnSelectBtn2(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 vhView.showView("selectReservationView");
             }
-        });*/
+        });
     }
 }

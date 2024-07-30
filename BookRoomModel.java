@@ -79,97 +79,75 @@ public class BookRoomModel {
 
     public int addReservation(Reservation reservation, Room room){
         ArrayList<Boolean> roomAvailable = room.getAvailability();
-<<<<<<< HEAD
         ArrayList<Integer> dayList = chosenHotel.getMarkedDayList();
         ArrayList<Double> percenList = chosenHotel.getMarkedPriceList();
         Iterator<Integer> dayIterator = dayList.iterator();
 
         int in = reservation.getCheckIn() - 1;
-        //System.out.println("\n" + in);
         int out = reservation.getCheckOut() - 1;
-        //System.out.println(out);
 
         int count = 0;
         double totalPrice = 0.0;
 
         if (in < 0 || out > 30 || in >= out || in == 31 || out == 0){
-=======
-
-        ArrayList<Integer> dayList = chosenHotel.getMarkedDayList();
-        ArrayList<Double> percenList = chosenHotel.getMarkedPriceList();
-        Iterator<Integer> dayIterator = dayList.iterator();
-
-        int in = reservation.getCheckIn();
-        int out = reservation.getCheckOut();
-
-        int count = 0;
-        double totalPrice = 0.0;
-
-        if (in < 0 || out > 31 || in >= out || in == 32 || out == 0){
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
             return -1;
         }
 
-        for(int i = in; i <= out; i++){
+        for(int i = in; i < out; i++){
             if(roomAvailable.get(i) == false){
                 return 0;
             }
         }
 
-        for(int i = in; i <= out; i++){
+        for(int i = in; i < out; i++){
             roomAvailable.set(i, false);
-<<<<<<< HEAD
-            if(room instanceof Deluxe){
-                reservation.addPriceBreakdown("Day " + i + ": " + ((Deluxe) room).getPrice());
-              }
-            else if(room instanceof Executive){
-                reservation.addPriceBreakdown("Day " + i + ": " + ((Executive) room).getPrice());
+           if(reservation.getDiscountCode().equals("STAY4_GET1") && i == in){
+                reservation.addPriceBreakdown("Day " + (i + 1) + ": FREE !");
             }
             else{
-                reservation.addPriceBreakdown("Day " + i + ": " + room.getPrice());
-            }
-            
-            while(dayIterator.hasNext()){
-                if(dayIterator.next() == i){
-                    if(room instanceof Deluxe){
-                        totalPrice += ((Deluxe) room).getPrice() * percenList.get(count);
-                        reservation.addPriceBreakdown("Day " + i + ": " + (percenList.get(count) * ((Deluxe) room).getPrice()));
-                      }
-                    else if(room instanceof Executive){
-                        totalPrice += ((Executive) room).getPrice() * percenList.get(count);
-                        reservation.addPriceBreakdown("Day " + i + ": " + (percenList.get(count) * ((Executive) room).getPrice()));
+                if(room instanceof Deluxe){
+                    reservation.addPriceBreakdown("Day " + (i + 1) + ": " + ((Deluxe) room).getPrice());
+                }
+                else if(room instanceof Executive){
+                    reservation.addPriceBreakdown("Day " + (i + 1) + ": " + ((Executive) room).getPrice());
+                }
+                else{
+                    reservation.addPriceBreakdown("Day " + (i + 1) + ": " + room.getPrice());
+                }
+                
+                while(dayIterator.hasNext()){
+                    if(dayIterator.next() == i){
+                        if(room instanceof Deluxe){
+                            totalPrice += ((Deluxe) room).getPrice() * percenList.get(count);
+                            reservation.addPriceBreakdown("Day " + (i + 1) + ": " + (percenList.get(count) * ((Deluxe) room).getPrice()));
+                        }
+                        else if(room instanceof Executive){
+                            totalPrice += ((Executive) room).getPrice() * percenList.get(count);
+                            reservation.addPriceBreakdown("Day " + (i + 1) + ": " + (percenList.get(count) * ((Executive) room).getPrice()));
+                        }
+                        else{
+                            totalPrice += room.getPrice() * percenList.get(count);
+                            reservation.addPriceBreakdown("Day " + (i + 1) + ": " + (percenList.get(count) * room.getPrice()));
+                        }
+                        count++;
                     }
-                    else{
-                        totalPrice += room.getPrice() * percenList.get(count);
-                        reservation.addPriceBreakdown("Day " + i + ": " + (percenList.get(count) * room.getPrice()));
-                    }
-=======
-            reservation.addPriceBreakdown("Day " + i + ": " + room.getPrice());
-            while(dayIterator.hasNext()){
-                if(dayIterator.next() == i){
-                    totalPrice += percenList.get(count) * room.getPrice();
-                    reservation.addPriceBreakdown("Day " + i + ": " + (percenList.get(count) * room.getPrice()));
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
-                    count++;
                 }
             }
         }
 
-<<<<<<< HEAD
         if(room instanceof Deluxe){
-            totalPrice = ((Deluxe) room).getPrice()*((out-in)-count);
+            totalPrice += ((Deluxe) room).getPrice()*((out-in)-count);
           }
         else if(room instanceof Executive){
-            totalPrice = ((Executive) room).getPrice()*((out-in)-count);
+            totalPrice += ((Executive) room).getPrice()*((out-in)-count);
         }
         else{
-            totalPrice = room.getPrice()*((out-in)-count);
+            totalPrice += room.getPrice()*((out-in)-count);
         }
 
-=======
-        totalPrice += room.getPrice()*((out-in)-count);
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
         reservation.setTotalPrice(totalPrice);
+        //moved here from controller for better discount application
+        checkDiscount(reservation.getDiscountCode(), reservation);
 
         room.getReservations().add(reservation);
 
@@ -180,13 +158,23 @@ public class BookRoomModel {
         int checkIn = reservation.getCheckIn();
         int checkOut = reservation.getCheckOut();
         double totalPrice = reservation.getTotalPrice();
+        ArrayList<Integer> markedDay = chosenHotel.getMarkedDayList();
+        Iterator<Integer> mdIterator = markedDay.iterator();
+        ArrayList<Double> markedPercent = chosenHotel.getMarkedPriceList();
 
         if(discountCode.equals("I_WORK_HERE")){
             reservation.setTotalPrice(totalPrice - totalPrice * 0.1);
         }
         else if(discountCode.equals("STAY4_GET1") && (checkOut - checkIn >= 5)){
-            reservation.setTotalPrice(totalPrice - reservation.getRoom().getPrice());
-            //TODO: reflect changes in breakdown of prices
+            int i = 0;
+            while(mdIterator.hasNext()){
+                //if date modifier exists
+                if(checkIn == mdIterator.next()){
+                    reservation.setTotalPrice(totalPrice - ((totalPrice/(checkOut-checkIn)) * markedPercent.get(i)));
+                }
+                i++;
+            }
+            reservation.setTotalPrice(totalPrice - (totalPrice/(checkOut-checkIn)));
         }
         else if(discountCode.equals("PAYDAY") && (checkInRange(checkIn, checkOut, 1) || checkInRange(checkIn, checkOut, 2))){
             reservation.setTotalPrice(totalPrice - totalPrice * 0.07);

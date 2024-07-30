@@ -34,10 +34,6 @@ public class Hotel{
     private ArrayList<Integer> markedDayList;
     private ArrayList<Double> markedPriceList;
 
-    private ArrayList<Integer> markedDayList;
-
-    private ArrayList<Double> markedPriceList;
-
   /**
   * This method creates a new Hotel Instance
   * @param name the name of the hotel
@@ -45,21 +41,12 @@ public class Hotel{
   * @param roomPrice the base price of the rooms
   */
   public Hotel(String name, int numOfRooms, double roomPrice){
-<<<<<<< HEAD
     this.name = name;
     this.price = roomPrice;
     this.numRooms = numOfRooms;
     this.hotelRooms = new ArrayList<Room>();
     this.markedDayList = new ArrayList<Integer>();
     this.markedPriceList = new ArrayList<Double>();
-=======
-   this.name = name;
-   this.price = roomPrice;
-   this.numRooms = numOfRooms;
-   this.hotelRooms = new ArrayList<Room>();
-   this.markedDayList = new ArrayList<Integer>();
-   this.markedPriceList = new ArrayList<Double>();
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
 
 
     int numStdRooms = (numOfRooms + 2) / 3;
@@ -76,55 +63,6 @@ public class Hotel{
       hotelRooms.add(new Executive("Room " + (numStdRooms + numDlxRooms + i + 1), roomPrice)); // Adjust price if needed
     }
   }
-
-  /**
-  * This method adds a Room object to the array of Room Objects in the Hotel
-  * if number of Rooms is less than 50
-  */
-  /* REMOVE?
-  public boolean addRoom(){
-    //Checks if a Room instance can still be added
-    if(numRooms < 50){
-      //Creates a Room instance
-      hotelRooms.add(new Room("Room " + (numRooms + 1), price));
-      numRooms++;
-      //System.out.println("\nRoom Added Successfully");
-      System.out.println(numRooms);
-      System.out.println(name);
-      return true;
-    }
-    else {
-      //System.out.println("\nCannot Add Room. Max Number of Rooms Reached");
-      return false;
-    }
-  }*/
-
-  /**
-  * This method removes a Room object from an array of Room Objects in the Hotel
-  * @param roomName name of the Room object
-  */
-  /* REMOVE?
-  public void removeRoom(String roomName){
-    //Loops through a Hotel's Rooms
-    for(int i = 0; i < numRooms; i++){
-        //Checks if chosen Room exists
-      if(roomName.equals(hotelRooms.get(i).getName())){
-          //Checks if chosen Room still has Reservations
-        if(hotelRooms.get(i).getReservations().isEmpty()){
-            //Removes Room
-            hotelRooms.remove(i);
-            numRooms--;
-            System.out.println("\nRoom Successfully Removed");
-            return;
-        }
-        else{
-            System.out.println("\nCannot Remove. Selected Room Currently Has Reservation/s");
-            return;
-        }
-      }
-    }
-    System.out.println("\nRoom Name Not Found");
-  }*/
 
   /**
   * This method gets the name of the Hotel

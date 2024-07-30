@@ -35,8 +35,6 @@ public class Reservation{
     private String discountCode;
     private ArrayList<String> priceBreakdownList;
 
-    private ArrayList<String> priceBreakdownList;
-
     /**
     * This method creates a Reservation instance
     * @param username name of the Guest
@@ -49,7 +47,6 @@ public class Reservation{
       this.checkIn = checkIn;
       this.checkOut = checkOut;
       this.roomInfo = room;
-<<<<<<< HEAD
       this.discountCode = discount;
       this.priceBreakdownList = new ArrayList<String>();
 
@@ -62,10 +59,6 @@ public class Reservation{
       else{
         this.totalPrice = room.getPrice()*(checkOut - checkIn);
       }
-=======
-      this.totalPrice = 0.0;
-      this.priceBreakdownList = new ArrayList<String>();
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
     }
 
     /**
@@ -112,17 +105,12 @@ public class Reservation{
       return this.priceBreakdownList;
     }
 
-<<<<<<< HEAD
     public String getDiscountCode(){
       return this.discountCode;
     }
 
     public void setTotalPrice(Double price){
       this.totalPrice = price;
-=======
-    public void setTotalPrice(double Price){
-      this.totalPrice = Price;
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
     }
 
     public void addPriceBreakdown(String text){

@@ -2,12 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.BorderUIResource;
 
 import java.util.*;
 
 public class ManageHotelView extends JFrame{
-<<<<<<< HEAD
     private JFrame updPriceFrame, nameFrame, roomFrame, removeRsvFrame, guestFrame, roomTypeFrame, modFrame;
     private JPanel northPanel, centerPanel;
     private JLabel logLbl, nameLbl, promptLbl, promptLbl2, feedbackLbl;
@@ -16,15 +14,6 @@ public class ManageHotelView extends JFrame{
     private ArrayList<JButton> roomList = new ArrayList<JButton>();
     private JTextField inputTf;
     private JButton priceBtn, nameBtn, removeOneBtn, removeAllBtn, guestBtn,applyMdBtn;
-=======
-    private JFrame updPriceFrame, nameFrame, roomFrame, removeRsvFrame, guestFrame, modFrame;
-    private JPanel northPanel, centerPanel;
-    private JLabel logLbl, nameLbl, promptLbl, promptLbl2, feedbackLbl;
-    private JButton changeNameBtn, addRoomBtn, removeRoomBtn, updPriceBtn, dpModifyBtn, removeRsvBtn, removeHotelBtn, backBtn;
-    private ArrayList<JButton> roomList = new ArrayList<JButton>();
-    private JTextField inputTf;
-    private JButton priceBtn, nameBtn, removeOneBtn, removeAllBtn, guestBtn, applyMdBtn;
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
     private JComboBox<Integer> daysCB;
     
     public ManageHotelView(){
@@ -66,21 +55,14 @@ public class ManageHotelView extends JFrame{
         this.priceBtn = new JButton("Change Price");
         this.priceBtn.setPreferredSize(new Dimension(120, 30));
 
-<<<<<<< HEAD
         //Date price modifier option buttons
-=======
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
         this.dpModifyBtn = new JButton("Modify Date Pricing");
         this.dpModifyBtn.setPreferredSize(buttonDim);
 
         this.applyMdBtn = new JButton("Apply Modification");
         this.applyMdBtn.setPreferredSize(new Dimension(150, 30));
-<<<<<<< HEAD
   
         //Remove reservation option buttons
-=======
-
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
         this.removeRsvBtn = new JButton("Cancel A Reservation");
         this.removeRsvBtn.setPreferredSize(buttonDim);
 
@@ -348,11 +330,6 @@ public class ManageHotelView extends JFrame{
 
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridBagLayout());
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 10, 5, 10);
         gbc.gridx = 0;
@@ -491,10 +468,7 @@ public class ManageHotelView extends JFrame{
         this.priceBtn.addActionListener(actionListener);
     }
 
-<<<<<<< HEAD
     //ActionListeners for date price modifier
-=======
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
     public void setDpModifyBtn(ActionListener actionListener){
         this.dpModifyBtn.addActionListener(actionListener);
     }
@@ -584,11 +558,7 @@ public class ManageHotelView extends JFrame{
         return (Integer) this.daysCB.getSelectedItem();
     }
 
-<<<<<<< HEAD
     //Methods for closing frames
-=======
-    //frame stuff
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
     public void closeManageHFrame(){
         this.dispose();
     }
