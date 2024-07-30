@@ -102,9 +102,11 @@ public class BookRoomModel {
 
         for(int i = in; i < out; i++){
             roomAvailable.set(i, false);
+            reservation.addPriceBreakdown("Day " + i + ": " + room.getPrice());
             while(dayIterator.hasNext()){
                 if(dayIterator.next() == i){
                     totalPrice += percenList.get(count) * room.getPrice();
+                    reservation.addPriceBreakdown("Day " + i + ": " + (percenList.get(count) * room.getPrice()));
                     count++;
                 }
             }

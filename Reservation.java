@@ -1,3 +1,4 @@
+import java.util.*;
 /**
 * This class contains the information 
 * of a Reservation in a Room
@@ -32,6 +33,8 @@ public class Reservation{
     */
     private double totalPrice;
 
+    private ArrayList<String> priceBreakdownList;
+
     /**
     * This method creates a Reservation instance
     * @param username name of the Guest
@@ -45,6 +48,7 @@ public class Reservation{
       this.checkOut = checkOut;
       this.roomInfo = room;
       this.totalPrice = 0.0;
+      this.priceBreakdownList = new ArrayList<String>();
     }
     
     /**
@@ -87,7 +91,15 @@ public class Reservation{
       return this.totalPrice;
     }
 
+    public ArrayList<String> getPriceBreakdown(){
+      return this.priceBreakdownList;
+    }
+
     public void setTotalPrice(double Price){
       this.totalPrice = Price;
+    }
+
+    public void addPriceBreakdown(String text){
+      this.priceBreakdownList.add(text);
     }
   }
