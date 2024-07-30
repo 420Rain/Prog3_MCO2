@@ -31,6 +31,8 @@ public class Hotel{
     * This variable is an array of Room objects which represents the rooms of the hotel
     */
     private ArrayList<Room> hotelRooms;
+    private ArrayList<Integer> markedDayList;
+    private ArrayList<Double> markedPriceList;
 
   /**
   * This method creates a new Hotel Instance
@@ -39,16 +41,28 @@ public class Hotel{
   * @param roomPrice the base price of the rooms
   */
   public Hotel(String name, int numOfRooms, double roomPrice){
-   this.name = name;
-   this.price = roomPrice;
-   this.numRooms = numOfRooms;
-   this.hotelRooms = new ArrayList<Room>();
+    this.name = name;
+    this.price = roomPrice;
+    this.numRooms = numOfRooms;
+    this.hotelRooms = new ArrayList<Room>();
+    this.markedDayList = new ArrayList<Integer>();
+    this.markedPriceList = new ArrayList<Double>();
 
-   //Creates Room instances until the numOfRooms limit
-   for(int i = 0; i < numOfRooms; i++){
-     hotelRooms.add(new Room("Room " + (i + 1), roomPrice));
-   }
- }
+
+    int numStdRooms = (numOfRooms + 2) / 3;
+    int numDlxRooms = (numOfRooms + 1) / 3;
+    int numExcRooms = numOfRooms / 3;
+
+    for (int i = 0; i < numStdRooms; i++) {
+      hotelRooms.add(new Room("Room " + (i + 1), roomPrice));
+    } 
+    for (int i = 0; i < numDlxRooms; i++) {
+      hotelRooms.add(new Deluxe("Room " + (numStdRooms + i + 1), roomPrice)); // Adjust price if needed
+    }
+    for (int i = 0; i < numExcRooms; i++) {
+      hotelRooms.add(new Executive("Room " + (numStdRooms + numDlxRooms + i + 1), roomPrice)); // Adjust price if needed
+    }
+  }
 
   /**
   * This method adds a Room object to the array of Room Objects in the Hotel
@@ -179,6 +193,19 @@ public class Hotel{
     
     System.out.println("\nSuccessfully Changed the Room Prices");
     return true;
+  }
+
+  public void setDayPriceModifier(Integer day, double price){
+    this.markedDayList.add(day);
+    this.markedPriceList.add(price);
+  }
+
+  public ArrayList<Integer> getMarkedDayList(){
+    return this.markedDayList;
+  }
+
+  public ArrayList<Double> getMarkedPriceList(){
+    return this.markedPriceList;
   }
 
   public void addNumRoom(){

@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 public class ManageHotelController{
     private ManageHotelModel MHmodel;
@@ -36,12 +38,46 @@ public class ManageHotelController{
         this.MHview.setAddRoomBtn(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                if(MHmodel.addRoom(hotel) == true){
+                MHview.selectRoomType();
+            }
+        });
+
+        this.MHview.setAddStdBtn(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(MHmodel.addRoom(hotel, 1) == true){
                     MHview.setLogLblText("Room Added Successfully");
                 }
                 else{
                     MHview.setLogLblText("Cannot Add Room. Max Number of Rooms Reached");
                 }
+                MHview.closeRoomTypeFrame();
+            }
+        });
+
+        this.MHview.setAddDlxBtn(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(MHmodel.addRoom(hotel, 2) == true){
+                    MHview.setLogLblText("Room Added Successfully");
+                }
+                else{
+                    MHview.setLogLblText("Cannot Add Room. Max Number of Rooms Reached");
+                }
+                MHview.closeRoomTypeFrame();
+            }
+        });
+
+        this.MHview.setAddExcBtn(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(MHmodel.addRoom(hotel, 3) == true){
+                    MHview.setLogLblText("Room Added Successfully");
+                }
+                else{
+                    MHview.setLogLblText("Cannot Add Room. Max Number of Rooms Reached");
+                }
+                MHview.closeRoomTypeFrame();
             }
         });
 
@@ -102,6 +138,36 @@ public class ManageHotelController{
                 } catch (NumberFormatException ex) {
                     MHview.setFeedbackLblText("Invalid Price. Please Enter a Valid Number");
                 }  
+            }
+        });
+
+        this.MHview.setDpModifyBtn(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                MHview.modifyDpDisplay();
+            }
+        });
+
+        this.MHview.setApplyMdBtn(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                Integer day = MHview.getSelectedDay();
+                Double percent = Double.parseDouble(MHview.getInputTf())/100.00;
+
+                if(day > 0 && day < 32){
+                    if(percent > 0.4999 && percent < 1.5100){
+                        MHmodel.setModifier(day, percent, hotel);
+                        JOptionPane.showMessageDialog(null, "Modifier Set !", "SUCCESS", 1);
+                        MHview.closeModFrame();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Not within range of 50% - 150%", "ERROR", 0);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Not within range of 1 - 31", "ERROR", 0);
+                }
+
             }
         });
 
@@ -201,12 +267,17 @@ public class ManageHotelController{
                     MHview.setButtonList(room.getName(), new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if (room.getReservations().isEmpty()) {
+                            if (!room.getReservations().isEmpty()) {
                                 MHview.closeRoomFrame();
                                 MHview.removeRsvDisplay(room);
-                                RoomReservationManager reservationManager = new RoomReservationManager(MHmodel, MHview, room);
-                                reservationManager.removeOneRsv();
-                                reservationManager.removeAllRsv();
+
+                                //RoomReservationManager reservationManager = new RoomReservationManager(MHmodel, MHview, room);
+                                //reservationManager.removeOneRsv();
+                                //reservationManager.removeAllRsv();
+                                MHview.clearRemoveReservationButtons();
+
+                                removeOneRsv(room);
+                                removeAllRsv(room);
                             } else {
                                 MHview.setFeedbackLblText("Selected Room Has No Reservations");
                             }
@@ -235,8 +306,7 @@ public class ManageHotelController{
         this.MHview.manageHotelDisplay(hotel);
     }
 
-    //TODO: maybe put these two functions in the removeRsvBtn
-    /*public void removeOneRsv(Room room){
+    public void removeOneRsv(Room room){
         this.MHview.setRemoveOneBtn(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -284,6 +354,6 @@ public class ManageHotelController{
                 MHview.setLogLblText("Removed All Reservations in " + room.getName());
             }
         });
-    }*/
+    }
 
 }

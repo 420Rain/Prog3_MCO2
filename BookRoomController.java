@@ -36,16 +36,20 @@ public class BookRoomController {
         this.brView.setBookBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                Reservation reservation = new Reservation(brView.getNameTf(), Integer.parseInt(brView.getInTf()), Integer.parseInt(brView.getOutTf()), brModel.getRoom());
+                String discountCode = "";
+                discountCode = brView.getDiscountTf();
+
+                Reservation reservation = new Reservation(brView.getNameTf(), Integer.parseInt(brView.getInTf()), Integer.parseInt(brView.getOutTf()), brModel.getRoom(), discountCode);
                 int n = brModel.addReservation(reservation, brModel.getRoom());
                 if(n == -1){
-                    JOptionPane.showMessageDialog(null, "Not within date range", "Book a ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Not within date range", "Book a Room ERROR", JOptionPane.ERROR_MESSAGE);
                 }
                 else if(n == 0){
                     JOptionPane.showMessageDialog(null, "Dates overlapped", "Book a Room ERROR", JOptionPane.ERROR_MESSAGE);
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Room booked succesfully !", "Book a Room", n);
+                    JOptionPane.showMessageDialog(null, "Room booked succesfully!", "Book a Room", n);
+                    brModel.checkDiscount(discountCode, reservation);
                     brView.closePopUpFrame();
                 }
             }

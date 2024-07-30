@@ -62,6 +62,7 @@ public class ViewHotelController {
             public void actionPerformed(ActionEvent e) {
                 int day = Integer.parseInt(vhView.getAvailTfText());
                 Iterator<Room> availableRooms = vhModel.getAvailableRooms(day).iterator();
+
                 JTextArea textArea = vhView.getAvailabilityTA();
                 int count = 0;
                 textArea.setText("");
@@ -77,8 +78,42 @@ public class ViewHotelController {
                     }
                 }
                 
+                textArea.revalidate();
+                textArea.repaint();
             }
         });
+
+        /*this.vhView.setSelectRoomBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                Room room = vhModel.findRoom(vhModel.getHotel().getRooms(), vhView.getRoomTfText());
+                ArrayList<JLabel> labelList = vhView.getLabelList();
+                ArrayList<Boolean> availableList = room.getAvailability();
+        
+                JLabel name = vhView.getRPlaceHolder();
+                JLabel price = vhView.getPPlaceHolder();
+                //JLabel type = vhView.getTPlaceholder();
+        
+                name.setText(room.getName());
+                price.setText(String.valueOf(room.getPrice()));
+                //type.setText(room.getType());
+        
+                labelList.clear();
+        
+                for(int i = 0; i < availableList.size(); i++){
+                    JLabel label = new JLabel("" + (i + 1), SwingConstants.CENTER);
+                    if(availableList.get(i)){
+                        vhView.setGreen(label);
+                    } else {
+                        vhView.setRed(label);
+                    }
+                    label.setPreferredSize(new Dimension(50, 50));
+                    labelList.add(label);
+                }
+        
+                vhView.showView("displayRoomView");
+            }
+        });*/
 
         this.vhView.setSelectRoomBtnListener(new ActionListener() {
             @Override
@@ -108,6 +143,15 @@ public class ViewHotelController {
                     labelList.add(label);
                 }
         
+                // Ensure the panel updates with new labels
+                JPanel daysPanel = vhView.getDaysPanel();
+                daysPanel.removeAll();
+                for (JLabel label : labelList) {
+                    daysPanel.add(label);
+                }
+                daysPanel.revalidate();
+                daysPanel.repaint();
+                
                 vhView.showView("displayRoomView");
             }
         });
@@ -160,11 +204,11 @@ public class ViewHotelController {
             }
         });
 
-        this.vhView.setReturnSelectBtn2(new ActionListener() {
+        /*this.vhView.setReturnSelectBtn2(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 vhView.showView("selectReservationView");
             }
-        });
+        });*/
     }
 }

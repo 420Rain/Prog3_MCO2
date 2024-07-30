@@ -13,7 +13,7 @@ public class ViewHotelView extends JFrame {
     private JButton returnBtn, returnBtn2, returnBtn3, selectDayBtn, selectRoomBtn, returnSelectBtn, selectGuestBtn, returnSelectBtn2;
     private JTextField availTf, roomTf, guestTf;
     private JTextArea availabilityTextArea, displayRoomsTextArea;
-    private JPanel mainPanel;
+    private JPanel mainPanel, daysPanel;
     private CardLayout cardLayout;
     private ArrayList<JLabel> labelList;    
 
@@ -175,7 +175,7 @@ public class ViewHotelView extends JFrame {
         return roomPanel;
     }
 
-    public JPanel createDisplayRoomInfo() {
+    /*public JPanel createDisplayRoomInfo() {
         Dimension buttonDim = new Dimension(150, 30);
     
         JPanel roomPanel2 = new JPanel(new BorderLayout());
@@ -241,6 +241,83 @@ public class ViewHotelView extends JFrame {
         roomPanel2.add(returnSelectBtn, BorderLayout.SOUTH);
     
         return roomPanel2;
+    }*/
+
+    public JPanel createDisplayRoomInfo() {
+        Dimension buttonDim = new Dimension(150, 30);
+        
+        JPanel roomPanel2 = new JPanel(new BorderLayout());
+        
+        JPanel textPanel = new JPanel(new GridLayout(3, 2, 10, 10));
+        rLabel = new JLabel("Room Name: ");
+        rPlaceholder = new JLabel();
+        textPanel.add(rLabel);
+        textPanel.add(rPlaceholder);
+        tLabel = new JLabel("Room Type: ");
+        tPlaceholder = new JLabel();
+        textPanel.add(tLabel);
+        textPanel.add(tPlaceholder);
+        pLabel = new JLabel("Room Price: ");
+        pPlaceholder = new JLabel();
+        textPanel.add(pLabel);
+        textPanel.add(pPlaceholder);
+        
+        roomPanel2.add(textPanel, BorderLayout.NORTH);
+        
+        JPanel textPanel2 = new JPanel();
+        textPanel2.setLayout(new BorderLayout());
+        
+        JPanel legendPanel = new JPanel(new GridLayout(1, 4, 10, 10));
+        dateLabel = new JLabel("Dates Available: ");
+        legendPanel.add(dateLabel);
+        
+        JLabel availableBox = new JLabel();
+        availableBox.setPreferredSize(new Dimension(10, 10));
+        availableBox.setBackground(new Color(0, 128, 0));
+        availableBox.setOpaque(true);
+        legendPanel.add(availableBox);
+        
+        JLabel textA = new JLabel(" - Available");
+        legendPanel.add(textA);
+        
+        JLabel unavailableBox = new JLabel();
+        unavailableBox.setPreferredSize(new Dimension(10, 10));
+        unavailableBox.setBackground(new Color(128, 0, 0));
+        unavailableBox.setOpaque(true);
+        legendPanel.add(unavailableBox);
+        
+        JLabel textU = new JLabel(" - Unavailable");
+        legendPanel.add(textU);
+        
+        textPanel2.add(legendPanel, BorderLayout.NORTH);
+        
+        daysPanel = new JPanel(new GridLayout(5, 7, 5, 5));
+        
+        // Ensure labelList is correctly populated
+        labelList.clear(); // Clear any existing labels
+        /*for (int i = 0; i < 31; i++) { // Assuming 31 days, adjust if necessary
+            JLabel label = new JLabel("" + (i + 1), SwingConstants.CENTER);
+            label.setPreferredSize(new Dimension(50, 50));
+            // Default to available, adjust as needed
+            setGreen(label);
+            labelList.add(label);
+        }*/
+        
+        // Add labels to daysPanel
+        for (JLabel label : labelList) {
+            daysPanel.add(label);
+        }
+        
+        textPanel2.add(daysPanel, BorderLayout.CENTER);
+        
+        roomPanel2.add(textPanel2, BorderLayout.CENTER);
+        
+        returnSelectBtn = new JButton("Return to Selection");
+        returnSelectBtn.setPreferredSize(buttonDim);
+        
+        roomPanel2.add(returnSelectBtn, BorderLayout.SOUTH);
+        
+        return roomPanel2;
     }
 
     public JPanel createReservationSelect(){
@@ -272,7 +349,7 @@ public class ViewHotelView extends JFrame {
     }
 
     public JPanel createReservationDisplay(){
-        Dimension buttonDim = new Dimension(150, 30);
+        //Dimension buttonDim = new Dimension(150, 30);
 
         JPanel displayPanel = new JPanel();
         
@@ -378,9 +455,9 @@ public class ViewHotelView extends JFrame {
         returnSelectBtn.addActionListener(actionListener);
     }
 
-    public void setReturnSelectBtn2(ActionListener actionListener){
+    /*public void setReturnSelectBtn2(ActionListener actionListener){
         returnSelectBtn2.addActionListener(actionListener);
-    }
+    }*/
 
     public void setGreen(JLabel label){
         label.setBackground(new Color(255, 255, 255));
@@ -412,6 +489,11 @@ public class ViewHotelView extends JFrame {
 
     public JTextArea getAvailabilityTA() {
         return availabilityTextArea;
+    }
+
+    public void updateAvailabilityTA(){
+        this.availabilityTextArea.repaint();
+        this.availabilityTextArea.revalidate();
     }
 
     public String getAvailTfText() {
@@ -452,5 +534,9 @@ public class ViewHotelView extends JFrame {
 
     public void showView(String panelName) {
         cardLayout.show(mainPanel, panelName);
+    }
+
+    public JPanel getDaysPanel(){
+        return this.daysPanel;
     }
 }

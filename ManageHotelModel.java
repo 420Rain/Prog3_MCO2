@@ -23,13 +23,21 @@ public class ManageHotelModel{
         return true;
     }
 
-    public boolean addRoom(Hotel hotel) {
+    public boolean addRoom(Hotel hotel, int roomType) {
         // Check if a Room instance can still be added
         if (hotel.getNumRooms() < 50) {
             // Generate a unique name for the room
             String roomName = generateUniqueRoomName(hotel);
             // Creates a Room instance
-            hotel.getRooms().add(new Room(roomName, hotel.getPrice()));
+            if(roomType == 2){
+                hotel.getRooms().add(new Deluxe(roomName, hotel.getPrice()));
+            }
+            else if(roomType == 3){
+                hotel.getRooms().add(new Executive(roomName, hotel.getPrice()));
+            }
+            else{
+                hotel.getRooms().add(new Room(roomName, hotel.getPrice()));
+            }
             hotel.addNumRoom();
             System.out.println(hotel.getNumRooms());
             System.out.println(hotel.getName());
@@ -61,10 +69,6 @@ public class ManageHotelModel{
         return false;
     }
 
-    /*public void removeRoom(Hotel hotel, String room){
-        hotel.removeRoom(room);
-    }*/
-
     public boolean removeRoom(Hotel hotel, String roomName){
         //Loops through a Hotel's Rooms
         for(int i = 0; i < hotel.getNumRooms(); i++){
@@ -91,9 +95,22 @@ public class ManageHotelModel{
         return hotel.setRoomPrice(price);
     }
 
-    /*public void removeReservation(Room room, Reservation reservation){
-        room.removeReservation(reservation);
-    }*/
+    public void setModifier(Integer day, Double percent, Hotel hotel){
+        ArrayList<Integer> dayList = hotel.getMarkedDayList();
+        ArrayList<Double> doubleList = hotel.getMarkedPriceList();
+        Iterator<Integer> dayIterator = dayList.iterator();
+
+        int i = 0;
+        while(dayIterator.hasNext()){
+            if(dayIterator.next() == day){
+                dayList.remove(i);
+                doubleList.remove(i);
+            }
+            i++;
+        }
+
+        hotel.setDayPriceModifier(day, percent);
+    }
 
     public void removeReservation(Room room, Reservation reservation){
         for(int i = 0; i < room.getReservations().size(); i++){
@@ -103,8 +120,8 @@ public class ManageHotelModel{
                 int checkOut = reservation.getCheckOut() - 1;
     
                 //Removes reservation by setting the availability of the range of days to true
-                for(int j = checkIn; j < checkOut; j++){
-                    room.setAvailability().set(j, true);
+                for(int j = checkIn; j <= checkOut; j++){
+                    room.setAvailability(j, true);
                 }
     
                 room.getReservations().remove(i);

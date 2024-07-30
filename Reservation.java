@@ -1,3 +1,4 @@
+import java.util.*;
 /**
 * This class contains the information 
 * of a Reservation in a Room
@@ -31,6 +32,8 @@ public class Reservation{
     * the guest will stay
     */
     private double totalPrice;
+    private String discountCode;
+    private ArrayList<String> priceBreakdownList;
 
     /**
     * This method creates a Reservation instance
@@ -39,14 +42,25 @@ public class Reservation{
     * @param checkOut a number representing the day the guest will check out
     * @param room a Room object where the Reservation will take place
     */
-    public Reservation(String username, int checkIn, int checkOut, Room room){
+    public Reservation(String username, int checkIn, int checkOut, Room room, String discount){
       this.guestName = username;
       this.checkIn = checkIn;
       this.checkOut = checkOut;
       this.roomInfo = room;
-      this.totalPrice = room.getPrice()*(checkOut - checkIn);
+      this.discountCode = discount;
+      this.priceBreakdownList = new ArrayList<String>();
+
+      if(room instanceof Deluxe){
+        this.totalPrice = ((Deluxe) room).getPrice()*(checkOut - checkIn);
+      }
+      else if(room instanceof Executive){
+        this.totalPrice = ((Executive) room).getPrice()*(checkOut - checkIn);
+      }
+      else{
+        this.totalPrice = room.getPrice()*(checkOut - checkIn);
+      }
     }
-    
+
     /**
     * This method gets the guest name of a Reservation
     * @return name of the guest
@@ -85,5 +99,21 @@ public class Reservation{
     */
     public double getTotalPrice(){
       return this.totalPrice;
+    }
+
+    public ArrayList<String> getPriceBreakdown(){
+      return this.priceBreakdownList;
+    }
+
+    public String getDiscountCode(){
+      return this.discountCode;
+    }
+
+    public void setTotalPrice(Double price){
+      this.totalPrice = price;
+    }
+
+    public void addPriceBreakdown(String text){
+      this.priceBreakdownList.add(text);
     }
   }

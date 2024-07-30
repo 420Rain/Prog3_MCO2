@@ -7,13 +7,9 @@ import javax.swing.plaf.BorderUIResource;
 import java.util.*;
 
 public class HotelReservationSystemView extends JFrame {
-<<<<<<< HEAD
-    private JFrame createHFrame, noHFrame, selectHFrame, manageHFrame;
-    private ArrayList<JButton> hotelList = new ArrayList<JButton>();  
-=======
+    private JFrame createHFrame, noHFrame, selectHFrame, manageHFrame; 
     private ArrayList<JFrame> frameList = new ArrayList<JFrame>();
     private ArrayList<JButton> hotelList = new ArrayList<JButton>();
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
     private JLabel promptLbl, promptLbl2, feedbackLbl;
     private JTextField hotelNameTf, numRoomTf;
     private JButton createHotelBtn, viewHotelBtn, manageHotelBtn, bookRoomBtn, exitBtn, createBtn, viewBtn, okayBtn, 
@@ -86,17 +82,7 @@ public class HotelReservationSystemView extends JFrame {
     }
 
     public void initialize(){
-<<<<<<< HEAD
         Dimension buttonDim = new Dimension(170, 30);
-=======
-        //Left Panel
-        /*if(westPanel != null && centerPanel != null){
-          clearPanel(westPanel);
-          clearPanel(centerPanel);
-        }*/
-
-        Dimension buttonDim = new Dimension(150, 30);
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
 
         //Left Panel
         GridBagConstraints gbc = new GridBagConstraints();
@@ -149,15 +135,11 @@ public class HotelReservationSystemView extends JFrame {
         centerPanel.add(promptLbl2, BorderLayout.CENTER);
 
         this.add(centerPanel, BorderLayout.CENTER);
-<<<<<<< HEAD
-        
-=======
 
         westPanel.revalidate();
         westPanel.repaint();
         centerPanel.revalidate();
         centerPanel.repaint();
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
     }
     
     //for main menu buttons
@@ -254,15 +236,6 @@ public class HotelReservationSystemView extends JFrame {
       this.hotelNameTf.setText("");
       this.numRoomTf.setText("");
     }
-<<<<<<< HEAD
-    
-    public void clearPanel(JPanel Panel){ 
-      //clears panels in mainframe
-=======
-
-    public void clearHotelButtons(){
-      this.hotelList.clear();
-    }
 
     public void closeWindow(JFrame Window){
       Window.dispose();
@@ -270,7 +243,6 @@ public class HotelReservationSystemView extends JFrame {
     
     public void clearPanels(JPanel Panel){ 
       //clears panels
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
       Panel.removeAll();
     }
 
@@ -416,47 +388,37 @@ public class HotelReservationSystemView extends JFrame {
       noHFrame.setResizable(false);
     }
 
-<<<<<<< HEAD
     public void selectHotel(int index){
       selectHFrame = new JFrame();
       
       if(index == 0){
+        promptLbl = new JLabel("Select a Hotel to view!");
+        promptLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
         selectHFrame.setTitle("View Hotel");
       }
       if(index == 1){
+        promptLbl = new JLabel("Select a Hotel to manage!");
+        promptLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
         selectHFrame.setTitle("Manage Hotel");
+      }
+      if(index == 2){
+        promptLbl = new JLabel("Select a Hotel to Book In!");
+        promptLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
+        selectHFrame.setTitle("Book A Room");
       }
 
       selectHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		  selectHFrame.setLayout(new BoxLayout(selectHFrame.getContentPane(), BoxLayout.Y_AXIS));
-      selectHFrame.setSize(250, 300);
-=======
-    public void viewHotelDisplay(){
-      JFrame viewHFrame = this.frameList.get(2);
-      viewHFrame = new JFrame("View a Hotel !");
-      viewHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		  viewHFrame.setLayout(new BoxLayout(viewHFrame.getContentPane(), BoxLayout.Y_AXIS));
-      viewHFrame.setSize(250, 300);
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
+      selectHFrame.setSize(260, 300);   
 
-      promptLbl = new JLabel("Select a Hotel to view !");
-      promptLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-<<<<<<< HEAD
       selectHFrame.add(Box.createVerticalStrut(15));
       selectHFrame.add(promptLbl);
       selectHFrame.add(Box.createVerticalStrut(10));
-=======
-      viewHFrame.add(Box.createVerticalStrut(15));
-      viewHFrame.add(promptLbl);
-      viewHFrame.add(Box.createVerticalStrut(10));
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
 
       Iterator<JButton> button = hotelList.iterator();
       while (button.hasNext()) {
         JButton hButton = button.next();
         hButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-<<<<<<< HEAD
         //hButton.setPreferredSize(new Dimension(180, 30));
         selectHFrame.add(hButton);
       }
@@ -464,16 +426,7 @@ public class HotelReservationSystemView extends JFrame {
       selectHFrame.setLocationRelativeTo(null);
       selectHFrame.setVisible(true);
       selectHFrame.setResizable(false);
-=======
-        viewHFrame.add(hButton);
-      }
-      
-
-      viewHFrame.setLocationRelativeTo(null);
-      viewHFrame.setVisible(true);
->>>>>>> df834ca5672ff59fc5ca2646de4b6d6cb6c41dc6
     }
-
 
     public void closeCreateHFrame(){
       createHFrame.dispose();
