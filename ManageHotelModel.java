@@ -111,6 +111,13 @@ public class ManageHotelModel{
 
         hotel.setDayPriceModifier(day, percent);
     }
+<<<<<<< HEAD
+=======
+
+    /*public void removeReservation(Room room, Reservation reservation){
+        room.removeReservation(reservation);
+    }*/
+>>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
 
     public void removeReservation(Room room, Reservation reservation){
         for(int i = 0; i < room.getReservations().size(); i++){
@@ -120,7 +127,11 @@ public class ManageHotelModel{
                 int checkOut = reservation.getCheckOut() - 1;
     
                 //Removes reservation by setting the availability of the range of days to true
+<<<<<<< HEAD
                 for(int j = checkIn; j <= checkOut; j++){
+=======
+                for(int j = checkIn; j < checkOut; j++){
+>>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
                     room.setAvailability(j, true);
                 }
     

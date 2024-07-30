@@ -34,6 +34,10 @@ public class Hotel{
     private ArrayList<Integer> markedDayList;
     private ArrayList<Double> markedPriceList;
 
+    private ArrayList<Integer> markedDayList;
+
+    private ArrayList<Double> markedPriceList;
+
   /**
   * This method creates a new Hotel Instance
   * @param name the name of the hotel
@@ -41,12 +45,21 @@ public class Hotel{
   * @param roomPrice the base price of the rooms
   */
   public Hotel(String name, int numOfRooms, double roomPrice){
+<<<<<<< HEAD
     this.name = name;
     this.price = roomPrice;
     this.numRooms = numOfRooms;
     this.hotelRooms = new ArrayList<Room>();
     this.markedDayList = new ArrayList<Integer>();
     this.markedPriceList = new ArrayList<Double>();
+=======
+   this.name = name;
+   this.price = roomPrice;
+   this.numRooms = numOfRooms;
+   this.hotelRooms = new ArrayList<Room>();
+   this.markedDayList = new ArrayList<Integer>();
+   this.markedPriceList = new ArrayList<Double>();
+>>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
 
 
     int numStdRooms = (numOfRooms + 2) / 3;

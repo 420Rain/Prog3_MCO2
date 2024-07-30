@@ -3,6 +3,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 public class ManageHotelController{
     private ManageHotelModel MHmodel;
     private ManageHotelView MHview;
@@ -167,7 +170,11 @@ public class ManageHotelController{
                 else{
                     JOptionPane.showMessageDialog(null, "Not within range of 1 - 31", "ERROR", 0);
                 }
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
             }
         });
 
