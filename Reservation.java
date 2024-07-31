@@ -1,5 +1,3 @@
-package HRS;
-
 import java.util.*;
 /**
 * This class contains the information 
