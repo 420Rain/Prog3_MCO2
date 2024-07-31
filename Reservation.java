@@ -33,7 +33,6 @@ public class Reservation{
     */
     private double totalPrice;
 
-<<<<<<< HEAD
     /**
      * This variable is the discount code that lowers the total price of reservations
      */
@@ -43,9 +42,6 @@ public class Reservation{
      * This variable is the arrayList for the price breakdown
      */
     private ArrayList<String> priceBreakdownList;
-
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     /**
     * This method creates a Reservation instance
     * @param username name of the Guest
@@ -120,13 +116,10 @@ public class Reservation{
       return this.priceBreakdownList;
     }
 
-<<<<<<< HEAD
     /**
      * This method gets the discount code of a reservation
      * @return discount code of the reservation
      */
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     public String getDiscountCode(){
       return this.discountCode;
     }
