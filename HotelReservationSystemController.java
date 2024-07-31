@@ -4,10 +4,28 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.*;
 
+/**
+* This class is the controller for the HotelReservationSystem which transfers data from the model
+* to the view
+* @author Rainier A. Dulatre
+* @author Patrick Hans A. Perez
+* @version 1.0
+*/
 public class HotelReservationSystemController{
+    /**
+     * This variable is the HotelReservationView
+     */
     private HotelReservationSystemView hrsView;
+    /**
+     * This variable is the HotelReservationModel
+     */
 	private HotelReservationSystemModel hrsModel;
 
+    /**
+     * Creates an instance of HotelReservationSystemController
+     * @param hrsView
+     * @param hrsModel
+     */
     public HotelReservationSystemController(HotelReservationSystemView hrsView, HotelReservationSystemModel hrsModel) {
         this.hrsView = hrsView;
         this.hrsModel = hrsModel;
@@ -59,7 +77,6 @@ public class HotelReservationSystemController{
                                     ViewHotelView vhView = new ViewHotelView(hotel);
         
                                     ViewHotelController vhController = new ViewHotelController(vhModel, vhView);
-                                    hrsView.closeSelectHFrame();
                             }              
                         };
                         hrsView.setButtonList(hotel.getName(), actionListener);

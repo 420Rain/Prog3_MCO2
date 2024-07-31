@@ -20,7 +20,6 @@ public class BookRoomView extends JFrame{
      * These are the buttons used in the main interface of booking a room option
      */
     private JButton selectRoomBtn, bookBtn, returnMenuBtn;
-<<<<<<< HEAD
 
     /**
      * These are the text fields used for the input details when booking a room
@@ -30,9 +29,6 @@ public class BookRoomView extends JFrame{
     /**
      * This variable is the chosen hotel to book a room in
      */
-=======
-    private JTextField selectRoomTf, nameTf, inTf, outTf, discountTf;
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     private Hotel hotel;
 
     /**
@@ -54,16 +50,11 @@ public class BookRoomView extends JFrame{
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-<<<<<<< HEAD
     /**
      * This method displays the main menu interface for booking a room
      */
     public void initialize() {
         // Center panel
-=======
-    public void initialize(){
-        //Center panel
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridBagLayout());
     

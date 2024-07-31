@@ -4,15 +4,47 @@ import javax.swing.*;
 
 import java.util.*;
 
+/**
+* This class creates the GUI for the HotelReservation view or the Main Menu
+* @author Rainier A. Dulatre
+* @author Patrick Hans A. Perez
+* @version 1.0
+*/
 public class HotelReservationSystemView extends JFrame {
-    private JFrame createHFrame, noHFrame, selectHFrame; 
+    /**
+     * These variables create the Frames for the 3 main Frames being the
+     * create a hotel, no hotel and select hotel
+     */
+    private JFrame createHFrame, noHFrame, selectHFrame;
+    /**
+     * This variable contains an arrayList of JButtons 
+     */ 
     private ArrayList<JButton> hotelList = new ArrayList<JButton>();
+    /**
+     * These variables are labels used in other methods of the GUI
+     */
     private JLabel promptLbl, promptLbl2, feedbackLbl;
+    /**
+     * These variables are the textfields that are used in the GUI for creating
+     * a hotel object
+     */
     private JTextField hotelNameTf, numRoomTf;
+    /**
+     * These variables are buttons that are used for creating the buttons that will lead to other MVCs
+     */
     private JButton createHotelBtn, viewHotelBtn, manageHotelBtn, bookRoomBtn, exitBtn, createBtn, viewBtn, okayBtn;
+    /**
+     * This variable is a textArea for hotel lists
+     */
     private JTextArea hotelListTextArea;
+    /**
+     * These variables are panels that will be used to organize components
+     */
     private JPanel westPanel, centerPanel;
 
+    /**
+     * Creates an instance of HotelReservationSystemView
+     */
     public HotelReservationSystemView(){
         super("Hotel Reservation System");
         setLayout(new BorderLayout());
@@ -24,6 +56,7 @@ public class HotelReservationSystemView extends JFrame {
         centerPanel = new JPanel();
         centerPanel.setLayout(new BorderLayout());
 
+        //initializes the main frame
         initialize();
 
         setVisible(true);
@@ -46,14 +79,14 @@ public class HotelReservationSystemView extends JFrame {
         //for noHFrame
         this.okayBtn = new JButton("Okay");
         this.okayBtn.setPreferredSize(new Dimension(100, 20));
-<<<<<<< HEAD
-=======
         
         //removes the blue thing around the text of the button but needs to applied to all buttons :(
         this.okayBtn.setFocusPainted(false);
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     }
-
+    
+    /**
+     * This method initializes the main menu of the GUI
+     */
     public void initialize(){
         Dimension buttonDim = new Dimension(170, 30);
 
@@ -113,46 +146,83 @@ public class HotelReservationSystemView extends JFrame {
         centerPanel.repaint();
     }
     
+    /**
+     * This method sets the actionListener for the createHotelBtn
+     * @param actionListener an actionlistener
+     */
     public void setCreateHotelBtnListener(ActionListener actionListener) {
 		  this.createHotelBtn.addActionListener(actionListener);
 	  }
 
+    /**
+     * This method sets the actionListener for the viewHotelBtn
+     * @param actionListener an actionlistener
+     */
     public void setViewHotelBtnListener(ActionListener actionListener) {
 		  this.viewHotelBtn.addActionListener(actionListener);
 	  }
 
+    /**
+     * This method sets the actionListener for the manageHotelBtn
+     * @param actionListener an actionlistener
+     */
     public void setManageHotelBtnListener(ActionListener actionListener) {
 		  this.manageHotelBtn.addActionListener(actionListener);
 	  }
 
+    /**
+     * This method sets the actionListener for the bookRoomBtn
+     * @param actionListener an actionlistener
+     */
     public void setBookRoomListener(ActionListener actionListener) {
 		  this.bookRoomBtn.addActionListener(actionListener);
 	  }
 
+    /**
+     * This method sets the actionListener for the exitBtn
+     * @param actionListener an actionlistener
+     */
     public void setExitBtnListener(ActionListener actionListener) {
 		  this.exitBtn.addActionListener(actionListener);
 	  }
 
-    //for create hotel window
+    /**
+     * This method sets the actionListener for the createBtn
+     * @param actionListener an actionlistener
+     */
     public void setCreateBtnListener(ActionListener actionListener){
       this.createBtn.addActionListener(actionListener);
     }
 
-    //for view hotel window
+    /**
+     * This method sets the actionListener for the createHotelBtn
+     * @param actionListener an actionlistener
+     */
     public void setViewBtnListener(ActionListener actionListener){
       this.viewBtn.addActionListener(actionListener);
     }
 
-    //for no hotel window
+    /**
+     * This method sets the actionListener for the okayBtn
+     * @param actionListener an actionlistener
+     */
     public void setOkayBtnListener(ActionListener actionListener){
       this.okayBtn.addActionListener(actionListener);
     }
 
-    //for text stuff
+    /**
+     * This method sets the feedback text of the JLabel
+     * @param text feedback text
+     */
     public void setFeedbackLblText(String text) {
       this.feedbackLbl.setText(text);
     }
 
+    /**
+     * This method initializes the button and adds it to the buttonlist
+     * @param name name of the button
+     * @param actionListener an action listener
+     */
     public void setButtonList(String name, ActionListener actionListener){
       JButton button = new JButton(name);
       button.addActionListener(actionListener);
@@ -160,19 +230,49 @@ public class HotelReservationSystemView extends JFrame {
       hotelList.add(button);
     }
 
+    /**
+     * This method returns the text of the textfield of hotelNameTf
+     * @return string
+     */
     public String getHotelNameTfText() {
       return this.hotelNameTf.getText();
     }
-  
+    
+    /**
+     * This method returns the text of the textfield of numRoomTf
+     * @return string
+     */
     public String getNumRoomTfText() {
       return this.numRoomTf.getText();
     }
-  
+    
+    /**
+     * This method clears the textfields of text
+     */
     public void clearTextFields() {
       this.hotelNameTf.setText("");
       this.numRoomTf.setText("");
     }
 
+    /**
+     * This method closes a JFrame without terminating the program
+     * @param Window frame being closed
+     */
+    public void closeWindow(JFrame Window){
+      Window.dispose();
+    }
+    
+    /**
+     * This method clears out the components in a JPanel
+     * @param Panel panel being removed of component
+     */
+    public void clearPanels(JPanel Panel){ 
+      Panel.removeAll();
+    }
+
+    /**
+     * This method removes buttons in a frame or a panel
+     */
     public void clearHotelButtons() {
       // Remove all buttons from the frame or panel
       for (JButton button : hotelList) {
@@ -186,13 +286,16 @@ public class HotelReservationSystemView extends JFrame {
       }
     }
 
+    /**
+     * This method displays and interface of creating a hotel
+     */
     public void createHotelDisplay(){
       createHFrame = new JFrame("Create a Hotel");
 
-      createHFrame = new JFrame("Create a Hotel");
-      createHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-      createHFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
-      createHFrame.setSize(600, 125);
+        createHFrame = new JFrame("Create a Hotel");
+        createHFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        createHFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
+        createHFrame.setSize(600, 125);
 
       this.promptLbl = new JLabel("Enter Hotel Name: ");
       this.promptLbl2 = new JLabel("Enter # of Rooms: ");
@@ -223,6 +326,10 @@ public class HotelReservationSystemView extends JFrame {
       createHFrame.setVisible(true);
     }
 
+    /**
+     * This method displays if there is no hotel in the database
+     * of the hotel reservation system
+     */
     public void noHotelDisplay(){
       noHFrame = new JFrame("Hotel Reservation System");
 
@@ -250,6 +357,11 @@ public class HotelReservationSystemView extends JFrame {
       noHFrame.setResizable(false);
     }
 
+    /**
+     * This method displays a button of hotels with the options
+     * of viewing them, managing them, and booking a room in them
+     * @param index the option whether to view, manage or book
+     */
     public void selectHotel(int index){
       selectHFrame = new JFrame();
       
@@ -289,19 +401,24 @@ public class HotelReservationSystemView extends JFrame {
       selectHFrame.setResizable(false);
     }
 
+    /**
+     * This method closes the createHotelFrame
+     */
     public void closeCreateHFrame(){
       createHFrame.dispose();
     }
 
+    /**
+     * This method closes the selectHotelFrame
+     */
     public void closeSelectHFrame(){
       selectHFrame.dispose();
     }
 
+    /**
+     * This method closes the noHotelFrame
+     */
     public void closeNoHFrame(){
       noHFrame.dispose();
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
 }
