@@ -23,11 +23,11 @@ public class HotelReservationSystemController{
 
     /**
      * Creates an instance of HotelReservationSystemController
-     * @param hrsView
-     * @param hrsModel
+     * @param hrsView view of HotelReservationSystem
+     * @param hrsModel model of HotelReservationSystem
      */
     public HotelReservationSystemController(HotelReservationSystemView hrsView, HotelReservationSystemModel hrsModel) {
-        this.hrsView = hrsView;
+        this.hrsView = hrsView; 
         this.hrsModel = hrsModel;
         
         this.hrsView.setCreateHotelBtnListener(new ActionListener() {
