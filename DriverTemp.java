@@ -1,5 +1,3 @@
-package HRS;
-
 public class DriverTemp {
     public static void main(String[] args){
         //instantiates a view and model to be used in the controller for the reservation system
