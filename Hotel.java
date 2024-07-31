@@ -34,97 +34,35 @@ public class Hotel{
     private ArrayList<Integer> markedDayList;
     private ArrayList<Double> markedPriceList;
 
-    private ArrayList<Integer> markedDayList;
-
-    private ArrayList<Double> markedPriceList;
-
-  /**
-  * This method creates a new Hotel Instance
-  * @param name the name of the hotel
-  * @param numOfRooms the number of rooms of the hotel
-  * @param roomPrice the base price of the rooms
-  */
-  public Hotel(String name, int numOfRooms, double roomPrice){
-<<<<<<< HEAD
-    this.name = name;
-    this.price = roomPrice;
-    this.numRooms = numOfRooms;
-    this.hotelRooms = new ArrayList<Room>();
-    this.markedDayList = new ArrayList<Integer>();
-    this.markedPriceList = new ArrayList<Double>();
-=======
-   this.name = name;
-   this.price = roomPrice;
-   this.numRooms = numOfRooms;
-   this.hotelRooms = new ArrayList<Room>();
-   this.markedDayList = new ArrayList<Integer>();
-   this.markedPriceList = new ArrayList<Double>();
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
+    /**
+    * This method creates a new Hotel Instance
+    * @param name the name of the hotel
+    * @param numOfRooms the number of rooms of the hotel
+    * @param roomPrice the base price of the rooms
+    */
+    public Hotel(String name, int numOfRooms, double roomPrice){
+      this.name = name;
+      this.price = roomPrice;
+      this.numRooms = numOfRooms;
+      this.hotelRooms = new ArrayList<Room>();
+      this.markedDayList = new ArrayList<Integer>();
+      this.markedPriceList = new ArrayList<Double>();
 
 
-    int numStdRooms = (numOfRooms + 2) / 3;
-    int numDlxRooms = (numOfRooms + 1) / 3;
-    int numExcRooms = numOfRooms / 3;
+      int numStdRooms = (numOfRooms + 2) / 3;
+      int numDlxRooms = (numOfRooms + 1) / 3;
+      int numExcRooms = numOfRooms / 3;
 
-    for (int i = 0; i < numStdRooms; i++) {
-      hotelRooms.add(new Room("Room " + (i + 1), roomPrice));
-    } 
-    for (int i = 0; i < numDlxRooms; i++) {
-      hotelRooms.add(new Deluxe("Room " + (numStdRooms + i + 1), roomPrice)); // Adjust price if needed
-    }
-    for (int i = 0; i < numExcRooms; i++) {
-      hotelRooms.add(new Executive("Room " + (numStdRooms + numDlxRooms + i + 1), roomPrice)); // Adjust price if needed
-    }
-  }
-
-  /**
-  * This method adds a Room object to the array of Room Objects in the Hotel
-  * if number of Rooms is less than 50
-  */
-  /* REMOVE?
-  public boolean addRoom(){
-    //Checks if a Room instance can still be added
-    if(numRooms < 50){
-      //Creates a Room instance
-      hotelRooms.add(new Room("Room " + (numRooms + 1), price));
-      numRooms++;
-      //System.out.println("\nRoom Added Successfully");
-      System.out.println(numRooms);
-      System.out.println(name);
-      return true;
-    }
-    else {
-      //System.out.println("\nCannot Add Room. Max Number of Rooms Reached");
-      return false;
-    }
-  }*/
-
-  /**
-  * This method removes a Room object from an array of Room Objects in the Hotel
-  * @param roomName name of the Room object
-  */
-  /* REMOVE?
-  public void removeRoom(String roomName){
-    //Loops through a Hotel's Rooms
-    for(int i = 0; i < numRooms; i++){
-        //Checks if chosen Room exists
-      if(roomName.equals(hotelRooms.get(i).getName())){
-          //Checks if chosen Room still has Reservations
-        if(hotelRooms.get(i).getReservations().isEmpty()){
-            //Removes Room
-            hotelRooms.remove(i);
-            numRooms--;
-            System.out.println("\nRoom Successfully Removed");
-            return;
-        }
-        else{
-            System.out.println("\nCannot Remove. Selected Room Currently Has Reservation/s");
-            return;
-        }
+      for (int i = 0; i < numStdRooms; i++) {
+        hotelRooms.add(new Room("Room " + (i + 1), roomPrice));
+      } 
+      for (int i = 0; i < numDlxRooms; i++) {
+        hotelRooms.add(new Deluxe("Room " + (numStdRooms + i + 1), roomPrice)); // Adjust price if needed
+      }
+      for (int i = 0; i < numExcRooms; i++) {
+        hotelRooms.add(new Executive("Room " + (numStdRooms + numDlxRooms + i + 1), roomPrice)); // Adjust price if needed
       }
     }
-    System.out.println("\nRoom Name Not Found");
-  }*/
 
   /**
   * This method gets the name of the Hotel
@@ -166,6 +104,11 @@ public class Hotel{
     return this.numRooms;
   }
 
+  /**
+   * This method gets a room in the hotel given an index
+   * @param index room to return based on the room list
+   * @return a room in the hotel
+   */
   public Room getRoom(int index){
     return hotelRooms.get(index);
   }
@@ -193,7 +136,6 @@ public class Hotel{
   public boolean setRoomPrice(double price){
     for(int i = 0; i < numRooms; i++){ //cause you can only change price if theres no reservations in all rooms
       if(!hotelRooms.get(i).getReservations().isEmpty()){
-        System.out.println("\nCould Not Change Price. Some Rooms Have Reservations");
         return false;
       }
     }
@@ -204,27 +146,45 @@ public class Hotel{
       hotelRooms.get(i).setPrice(price);
     }
     
-    System.out.println("\nSuccessfully Changed the Room Prices");
     return true;
   }
 
+  /**
+   * This method add a day and price when the price of a day has been modified
+   * @param day day to modify the price of
+   * @param price new modified price
+   */
   public void setDayPriceModifier(Integer day, double price){
     this.markedDayList.add(day);
     this.markedPriceList.add(price);
   }
 
+  /**
+   * This method gets the days that have been price modified
+   * @return arrayList of price modified days
+   */
   public ArrayList<Integer> getMarkedDayList(){
     return this.markedDayList;
   }
 
+  /**
+   * This method gets the list of modified prices
+   * @return arrayList of modified prices
+   */
   public ArrayList<Double> getMarkedPriceList(){
     return this.markedPriceList;
   }
 
+  /**
+   * This methods add a room to the hotel
+   */
   public void addNumRoom(){
     this.numRooms++;
   }
 
+  /**
+   * This methods removes a room from the hotel
+   */
   public void lessNumRoom(){
     this.numRooms--;
   }

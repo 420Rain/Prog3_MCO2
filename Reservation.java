@@ -32,9 +32,15 @@ public class Reservation{
     * the guest will stay
     */
     private double totalPrice;
-    private String discountCode;
-    private ArrayList<String> priceBreakdownList;
 
+    /**
+     * This variable is the discount code that lowers the total price of reservations
+     */
+    private String discountCode;
+
+    /**
+     * This variable is the arrayList for the price breakdown
+     */
     private ArrayList<String> priceBreakdownList;
 
     /**
@@ -49,7 +55,6 @@ public class Reservation{
       this.checkIn = checkIn;
       this.checkOut = checkOut;
       this.roomInfo = room;
-<<<<<<< HEAD
       this.discountCode = discount;
       this.priceBreakdownList = new ArrayList<String>();
 
@@ -62,10 +67,6 @@ public class Reservation{
       else{
         this.totalPrice = room.getPrice()*(checkOut - checkIn);
       }
-=======
-      this.totalPrice = 0.0;
-      this.priceBreakdownList = new ArrayList<String>();
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
     }
 
     /**
@@ -108,23 +109,34 @@ public class Reservation{
       return this.totalPrice;
     }
 
+    /**
+     * This method gets the price breakdown list
+     * @return price breakdown of the reservation
+     */
     public ArrayList<String> getPriceBreakdown(){
       return this.priceBreakdownList;
     }
 
-<<<<<<< HEAD
+    /**
+     * This method gets the discount code of a reservation
+     * @return discount code of the reservation
+     */
     public String getDiscountCode(){
       return this.discountCode;
     }
 
+    /**
+     * This method sets the total price of a reservation
+     * @param price price of the reservation
+     */
     public void setTotalPrice(Double price){
       this.totalPrice = price;
-=======
-    public void setTotalPrice(double Price){
-      this.totalPrice = Price;
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
     }
 
+    /**
+     * This method adds a text for the price breakdown
+     * @param text information about the price breakdown
+     */
     public void addPriceBreakdown(String text){
       this.priceBreakdownList.add(text);
     }

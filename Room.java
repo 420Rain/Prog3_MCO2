@@ -26,7 +26,7 @@ public class Room{
   private ArrayList<Reservation> reservations;
 
   /**
-  * This method creates a new Room instance 
+  * This is a constructor for a Room instance 
   * @param name name of the room
   * @param price price of the room
   */
@@ -67,10 +67,19 @@ public class Room{
     return this.availability.get(index);
   }
 
+  /**
+   * This method gets the availability of the room in all days
+   * @return an arrayList of the days the room is available
+   */
   public ArrayList<Boolean> getAvailability(){
     return this.availability;
   }
 
+  /**
+   * This method sets the availability of the room in a specified day
+   * @param index day to set availability
+   * @param availability true(set to available) or false(set to not available)
+   */
   public void setAvailability(int index, boolean availability){
     this.availability.set(index, availability);
   }
@@ -90,66 +99,5 @@ public class Room{
   public void setPrice(double price){
     this.price = price;
   }
-
-  /**
-  * This method adds a Reservation instance to the array of Reservations
-  * @param reservation a Reservation instance to be added
-  * @return true {check in and check out dates are valid}
-  * false {check in and check out days are invalid and they overlap other reservation dates}
-  */
-  /* REMOVE?
-  public boolean addReservation(Reservation reservation){
-    int checkIn = reservation.getCheckIn() - 1;
-    int checkOut = reservation.getCheckOut() - 1;
-
-    //Checks if out of bounds
-    if (checkIn < 0 || checkOut > 30 || checkIn >= checkOut || checkIn == 31 || checkOut == 0) {
-        System.out.println("\nInvalid Check-In/Check-Out Dates");
-        return false;
-    }
-
-    //checks if the Room's availability does not overlap days that are set to false
-    for (int i = checkIn; i < checkOut; i++) {
-        if (this.availability.get(i) == false) {
-            System.out.println("\nOverlapping Reservation Dates");
-            return false;
-        }
-    }
-    
-    //sets the Room's days of availability to false
-    for(int i = checkIn; i < checkOut; i++){
-        this.availability.set(i, false);
-    }
-    
-    this.reservations.add(reservation);
-    
-    System.out.println("\nReservation Successful\n");
-    return true;
-  }*/
-  /**
-  * This method removes a Reservation instance from an array of Reservations
-  * @param reservation a Reservation instance to be removed
-  */
-  /* REMOVE?
-  public void removeReservation(Reservation reservation){
-    for(int i = 0; i < this.reservations.size(); i++){
-      //finds the reservation of the guest name
-        if(this.reservations.get(i).getGuestName().equals(reservation.getGuestName())){
-            int checkIn = reservation.getCheckIn() - 1;
-            int checkOut = reservation.getCheckOut() - 1;
-
-            //Removes reservation by setting the availability of the range of days to true
-            for(int j = checkIn; j < checkOut; j++){
-                this.availability.set(j, true);
-            }
-
-            this.reservations.remove(i);
-            System.out.println("\nSuccessfully Removed Reservation");
-            return;
-        }
-    }
-
-    System.out.println("\nGuest Name Not Found");
-  }*/
   
 }

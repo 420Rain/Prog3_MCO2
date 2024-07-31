@@ -3,14 +3,34 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-
+/**
+* This class is the Controller for setting up the interactable options when managing a hotel
+* @author Rainier A. Dulatre
+* @author Patrick Hans A. Perez
+* @version 1.0
+*/
 public class ManageHotelController{
+    /**
+     * This variable is the model used for the controller
+     */
     private ManageHotelModel MHmodel;
+
+    /**
+     * This variable is the view used for the controller
+     */
     private ManageHotelView MHview;
+
+    /**
+     * This variable is the chosen hotel to manage
+     */
     private Hotel hotel;
 
+    /**
+     * This is the constructor for a ManageHotelController instance and it initializes the ActionEvents for the buttons in the view
+     * @param model model used to manage a hotel
+     * @param view view used to manage a hotel
+     * @param hotel chosen hotel to manage
+     */
     public ManageHotelController(ManageHotelModel model, ManageHotelView view, Hotel hotel){
         this.MHmodel = model;
         this.MHview = view;
@@ -170,100 +190,9 @@ public class ManageHotelController{
                 else{
                     JOptionPane.showMessageDialog(null, "Not within range of 1 - 31", "ERROR", 0);
                 }
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> 6d803e1fea80dcba90f5553810e0c4bbb1de5261
             }
         });
-
-        /*this.MHview.setRemoveRsvBtn(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                MHview.clearHotelButtons();
-                    for(Room room: hotel.getRooms()){
-                        MHview.setButtonList(room.getName(), new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e){
-                                if(room.getReservations().isEmpty()){
-                                    MHview.closeRoomFrame();
-                                    MHview.removeRsvDisplay(room);
-                                    removeOneRsv(room);
-                                    removeAllRsv(room);
-                                }
-                                else{
-                                    MHview.setFeedbackLblText("Selected Room Has No Reservations");
-                                }
-                            }
-                        });
-                    }
-                MHview.roomsDisplay(1);
-            }
-        });*/
-
-        /*this.MHview.setRemoveRsvBtn(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                MHview.clearHotelButtons();
-                for(Room room: hotel.getRooms()){
-                    MHview.setButtonList(room.getName(), new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e){
-                            if(room.getReservations().isEmpty()){
-                                MHview.closeRoomFrame();
-                                MHview.removeRsvDisplay(room);
-                                MHview.setRemoveOneBtn(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e){
-                                        MHview.findGuestDisplay();
-                                        MHview.closeRemoveRsvFrame();
-                                        MHview.setGuestBtn(new ActionListener() {
-                                            @Override
-                                            public void actionPerformed(ActionEvent e){
-                                                String name = MHview.getInputTf();
-                                                int reservationIndex = -1;
-                                                
-                                                for(int i = 0; i < room.getReservations().size(); i++){
-                                                    if(name.equals(room.getReservations().get(i).getGuestName())){
-                                                        reservationIndex = i;
-                                                        break;
-                                                    }
-                                                }
-                        
-                                                if(reservationIndex > -1){
-                                                    MHmodel.removeReservation(room, room.getReservations().get(reservationIndex));
-                                                    MHview.setLogLblText("Successfully Removed " + name + "'s Reservation");
-                                                    MHview.closeGuestFrame();
-                                                }
-                                                else{
-                                                    MHview.setFeedbackLblText("Guest Name Not Found");
-                                                }
-                                            }
-                                        });
-                                    }
-                                });
-                                MHview.setRemoveAllBtn(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e){
-                                        for(int i = 0; i < room.getReservations().size(); i++){
-                                            MHmodel.removeReservation(room, room.getReservations().get(i));
-                                        }
-                                        MHview.closeRemoveRsvFrame();
-                                        MHview.setLogLblText("Removed All Reservations in " + room.getName());
-                                    }
-                                });
-
-                            }
-                            else{
-                                MHview.setFeedbackLblText("Selected Room Has No Reservations");
-                            }
-                        }
-                    });
-                }
-                MHview.roomsDisplay(1);
-            }
-        });*/
 
         this.MHview.setRemoveRsvBtn(new ActionListener() {
             @Override
@@ -277,10 +206,6 @@ public class ManageHotelController{
                             if (!room.getReservations().isEmpty()) {
                                 MHview.closeRoomFrame();
                                 MHview.removeRsvDisplay(room);
-
-                                //RoomReservationManager reservationManager = new RoomReservationManager(MHmodel, MHview, room);
-                                //reservationManager.removeOneRsv();
-                                //reservationManager.removeAllRsv();
                                 MHview.clearRemoveReservationButtons();
 
                                 removeOneRsv(room);
@@ -313,6 +238,10 @@ public class ManageHotelController{
         this.MHview.manageHotelDisplay(hotel);
     }
 
+    /**
+     * This method sets up the ActionEvent for removing one reservation in a room
+     * @param room chosen room to remove one reservation from
+     */
     public void removeOneRsv(Room room){
         this.MHview.setRemoveOneBtn(new ActionListener() {
             @Override
@@ -324,6 +253,10 @@ public class ManageHotelController{
         });
     }
 
+    /**
+     * This method sets up the ActionEvent for finding the reservation given a guest name and removing it
+     * @param room chosen room to remove one reservation from
+     */
     public void removeGuestRsv(Room room){
         this.MHview.setGuestBtn(new ActionListener() {
             @Override
@@ -350,6 +283,10 @@ public class ManageHotelController{
         });
     }
 
+    /**
+     * This method sets up the ActionEvent for removing all the reservations in a room
+     * @param room chsoen room to remove all reservations from
+     */
     public void removeAllRsv(Room room){
         this.MHview.setRemoveAllBtn(new ActionListener() {
             @Override

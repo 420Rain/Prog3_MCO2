@@ -2,10 +2,28 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
+/**
+* This class is the Controller for setting up the interactable options when booking a room
+* @author Rainier A. Dulatre
+* @author Patrick Hans A. Perez
+* @version 1.0
+*/
 public class BookRoomController {
+    /**
+     * This variable is the model used for the controller
+     */
     private BookRoomModel brModel;
+
+    /**
+     * This variable is the view used for the controller
+     */
     private BookRoomView brView;
 
+    /**
+     * This is the constructor for a BookRoomController instance and it initializes the ActionEvents for the buttons in the view
+     * @param brModel model for the controller
+     * @param brView view for the controller
+     */
     public BookRoomController(BookRoomModel brModel, BookRoomView brView){
         this.brModel = brModel;
         this.brView = brView;
@@ -49,7 +67,7 @@ public class BookRoomController {
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Room booked succesfully!", "Book a Room", n);
-                    brModel.checkDiscount(discountCode, reservation);
+
                     brView.closePopUpFrame();
                 }
             }

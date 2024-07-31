@@ -4,19 +4,72 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
+/**
+* This class is the View for showing the graphical user interface when viewing a hotel
+* @author Rainier A. Dulatre
+* @author Patrick Hans A. Perez
+* @version 1.0
+*/
 public class ViewHotelView extends JFrame {
+    /**
+     * This variable is the chosen hotel to view
+     */
     private Hotel hotelViewed;
+
+    /**
+     * These variables are the labels used for prompting the user
+     */
     private JLabel promptLbl, promptLbl2, promptLbl3, promptLbl4;
+
+    /**
+     * These variables are the labels used for prompting or displaying information
+     */
     private JLabel rLabel, rPlaceholder, pLabel, pPlaceholder, tLabel, tPlaceholder, dateLabel;
+
+    /**
+     * These variables are the labels used for prompting or displaying information
+     */
     private JLabel nPlaceholder, resPlaceholder, iPlaceholder, oPlaceholder, tpPlaceholder;
+
+    /**
+     * These variables are the buttons used in the main interface when viewing a hotel
+     */
     private JButton roomAvailBtn, roomDetailBtn, reservationsBtn, backBtn;
-    private JButton returnBtn, returnBtn2, returnBtn3, selectDayBtn, selectRoomBtn, returnSelectBtn, selectGuestBtn, returnSelectBtn2;
+
+    /**
+     * These variables are the buttons used in the different options for viewing a hotel
+     */
+    private JButton returnBtn, returnBtn2, returnBtn3, selectDayBtn, selectRoomBtn, returnSelectBtn, returnSelectBtn2, selectGuestBtn;
+
+    /**
+     * These variables are the text fields for user input
+     */
     private JTextField availTf, roomTf, guestTf;
-    private JTextArea availabilityTextArea, displayRoomsTextArea;
+
+    /**
+     * These variable are the text area for displaying rooms
+     */
+    private JTextArea availabilityTextArea, displayRoomsTextArea, displayPBTextArea;
+
+    /**
+     * These variables are panels used in viewing a hotel
+     */
     private JPanel mainPanel, daysPanel;
+
+    /**
+     * This variable is a cardLayout for switching panels
+     */
     private CardLayout cardLayout;
+
+    /**
+     * This variable stores label for the days
+     */
     private ArrayList<JLabel> labelList;    
 
+    /**
+     * This is the constructor for a ViewHotelView instance
+     * @param hotel chosen hotel to view
+     */
     public ViewHotelView(Hotel hotel) {
         super("Viewing " + hotel.getName());
         this.hotelViewed = hotel;
@@ -32,6 +85,9 @@ public class ViewHotelView extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
+    /**
+     * This method displays the main menu interface for viewing a hotel
+     */
     public void initialize() {
         // Left Panel
         Dimension buttonDim = new Dimension(150, 30);
@@ -43,8 +99,8 @@ public class ViewHotelView extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
-        gbc.anchor = GridBagConstraints.NORTH; // align to the top
-        gbc.insets = new Insets(5, 10, 5, 10); // space around the buttons
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.insets = new Insets(5, 10, 5, 10);
 
         promptLbl = new JLabel("Please select an option!");
         westPanel.add(promptLbl, gbc);
@@ -100,8 +156,11 @@ public class ViewHotelView extends JFrame {
         this.add(mainPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * This method displays the window to show the availability of rooms on specific days
+     * @return a panel for displaying room availability information
+     */
     public JPanel createViewAvailability() {
-        Dimension buttonDim = new Dimension(150, 30);
 
         JPanel availPanel = new JPanel();
         promptLbl4 = new JLabel("Select a day to view (1-31): ");
@@ -110,9 +169,9 @@ public class ViewHotelView extends JFrame {
         availTf.setColumns(2);
 
         selectDayBtn = new JButton("Select");
-        selectDayBtn.setPreferredSize(buttonDim);
+        selectDayBtn.setPreferredSize(new Dimension(100, 30));
         returnBtn = new JButton("Return to Main View");
-        returnBtn.setPreferredSize(buttonDim);
+        returnBtn.setPreferredSize(new Dimension(170, 30));
 
         JPanel inputPanel = new JPanel();
         inputPanel.add(promptLbl4);
@@ -130,6 +189,10 @@ public class ViewHotelView extends JFrame {
         return availPanel;
     }
 
+    /**
+     * This method displays the room infomation of a specific room
+     * @return a panel for displaying room information
+     */
     public JPanel createSelectRoomInfo(){
         Dimension buttonDim = new Dimension(150, 30);
 
@@ -175,74 +238,10 @@ public class ViewHotelView extends JFrame {
         return roomPanel;
     }
 
-    /*public JPanel createDisplayRoomInfo() {
-        Dimension buttonDim = new Dimension(150, 30);
-    
-        JPanel roomPanel2 = new JPanel(new BorderLayout());
-    
-        JPanel textPanel = new JPanel(new GridLayout(3, 2, 10, 10));
-        rLabel = new JLabel("Room Name: ");
-        rPlaceholder = new JLabel();
-        textPanel.add(rLabel);
-        textPanel.add(rPlaceholder);
-        tLabel = new JLabel("Room Type: ");
-        tPlaceholder = new JLabel();
-        textPanel.add(tLabel);
-        textPanel.add(tPlaceholder);
-        pLabel = new JLabel("Room Price: ");
-        pPlaceholder = new JLabel();
-        textPanel.add(pLabel);
-        textPanel.add(pPlaceholder);
-    
-        roomPanel2.add(textPanel, BorderLayout.NORTH);
-    
-        JPanel textPanel2 = new JPanel();
-        textPanel2.setLayout(new BorderLayout());
-    
-        JPanel legendPanel = new JPanel(new GridLayout(1, 4, 10, 10));
-        dateLabel = new JLabel("Dates Available: ");
-        legendPanel.add(dateLabel);
-    
-        JLabel availableBox = new JLabel();
-        availableBox.setPreferredSize(new Dimension(10, 10));
-        availableBox.setBackground(new Color(0, 128, 0));
-        availableBox.setOpaque(true);
-        legendPanel.add(availableBox);
-    
-        JLabel textA = new JLabel(" - Available");
-        legendPanel.add(textA);
-    
-        JLabel unavailableBox = new JLabel();
-        unavailableBox.setPreferredSize(new Dimension(10, 10));
-        unavailableBox.setBackground(new Color(128, 0, 0));
-        unavailableBox.setOpaque(true);
-        legendPanel.add(unavailableBox);
-    
-        JLabel textU = new JLabel(" - Unavailable");
-        legendPanel.add(textU);
-    
-        textPanel2.add(legendPanel, BorderLayout.NORTH);
-    
-        JPanel daysPanel = new JPanel(new GridLayout(5, 7, 5, 5));
-    
-        daysPanel.removeAll();
-    
-        for (JLabel label : labelList) {
-            daysPanel.add(label);
-        }
-    
-        textPanel2.add(daysPanel, BorderLayout.CENTER);
-    
-        roomPanel2.add(textPanel2, BorderLayout.CENTER);
-    
-        returnSelectBtn = new JButton("Return to Selection");
-        returnSelectBtn.setPreferredSize(buttonDim);
-    
-        roomPanel2.add(returnSelectBtn, BorderLayout.SOUTH);
-    
-        return roomPanel2;
-    }*/
-
+    /**
+     * This method creates the panel for the display room information
+     * @return a panel for displaying room information
+     */
     public JPanel createDisplayRoomInfo() {
         Dimension buttonDim = new Dimension(150, 30);
         
@@ -293,15 +292,7 @@ public class ViewHotelView extends JFrame {
         
         daysPanel = new JPanel(new GridLayout(5, 7, 5, 5));
         
-        // Ensure labelList is correctly populated
-        labelList.clear(); // Clear any existing labels
-        /*for (int i = 0; i < 31; i++) { // Assuming 31 days, adjust if necessary
-            JLabel label = new JLabel("" + (i + 1), SwingConstants.CENTER);
-            label.setPreferredSize(new Dimension(50, 50));
-            // Default to available, adjust as needed
-            setGreen(label);
-            labelList.add(label);
-        }*/
+        labelList.clear();
         
         // Add labels to daysPanel
         for (JLabel label : labelList) {
@@ -320,6 +311,10 @@ public class ViewHotelView extends JFrame {
         return roomPanel2;
     }
 
+    /**
+     * This method creates the panel for selecting a reservation to view
+     * @return a panel for displaying selecting reservation
+     */
     public JPanel createReservationSelect(){
         Dimension buttonDim = new Dimension(150, 30);
 
@@ -348,194 +343,340 @@ public class ViewHotelView extends JFrame {
         return selectGuest;
     }
 
-    public JPanel createReservationDisplay(){
-        //Dimension buttonDim = new Dimension(150, 30);
-
-        JPanel displayPanel = new JPanel();
+    /**
+     * This method creates the panel for displaying a selected reservation's information
+     * @return a panel for displaying reservation information
+     */
+    public JPanel createReservationDisplay() {
+        JPanel displayPanel = new JPanel(new BorderLayout());
+    
+        JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JLabel titleLabel = new JLabel("Viewing Reservation");
+        titlePanel.add(titleLabel);
+        displayPanel.add(titlePanel, BorderLayout.NORTH);
         
-        JPanel necessaryInfo = new JPanel();
-        necessaryInfo.setLayout(new GridBagLayout());
+        JPanel necessaryInfo = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
-
-        JLabel name = new JLabel("GuestName: ");
-        nPlaceholder = new JLabel();
-        JLabel room = new JLabel("Room: ");
-        resPlaceholder = new JLabel();
-        JLabel in = new JLabel("Check-In Day: ");
-        iPlaceholder = new JLabel();
-        JLabel out = new JLabel("Check-Out Day: ");
-        oPlaceholder = new JLabel();
-        JLabel tp = new JLabel("Total price for Reservation: ");
-        tpPlaceholder = new JLabel();
-
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.NONE;
+    
+        JLabel nameLabel = new JLabel("Guest Name: ");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
-        necessaryInfo.add(name, gbc);
-
+        necessaryInfo.add(nameLabel, gbc);
+    
+        nPlaceholder = new JLabel();
         gbc.gridx = 1;
         necessaryInfo.add(nPlaceholder, gbc);
-
+    
+        JLabel roomLabel = new JLabel("Room: ");
+        gbc.gridx = 2;
+        necessaryInfo.add(roomLabel, gbc);
+    
+        resPlaceholder = new JLabel();
+        gbc.gridx = 3;
+        necessaryInfo.add(resPlaceholder, gbc);
+    
+        JLabel checkInLabel = new JLabel("Check-In Day: ");
         gbc.gridx = 0;
         gbc.gridy = 1;
-        necessaryInfo.add(room, gbc);
-
-        gbc.gridx = 1;
-        necessaryInfo.add(resPlaceholder, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        necessaryInfo.add(in, gbc);
-
+        necessaryInfo.add(checkInLabel, gbc);
+    
+        iPlaceholder = new JLabel();
         gbc.gridx = 1;
         necessaryInfo.add(iPlaceholder, gbc);
-
+    
+        JLabel checkOutLabel = new JLabel("Check-Out Day: ");
+        gbc.gridx = 2;
+        necessaryInfo.add(checkOutLabel, gbc);
+    
+        oPlaceholder = new JLabel();
+        gbc.gridx = 3;
+        necessaryInfo.add(oPlaceholder, gbc);
+    
+        JLabel totalPriceLabel = new JLabel("Total Price for Reservation: ");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        necessaryInfo.add(totalPriceLabel, gbc);
+    
+        tpPlaceholder = new JLabel();
+        gbc.gridx = 1;
+        gbc.gridwidth = 3;
+        necessaryInfo.add(tpPlaceholder, gbc);
+    
+        JLabel priceBreakdownLabel = new JLabel("Price Breakdown: ");
         gbc.gridx = 0;
         gbc.gridy = 3;
-        necessaryInfo.add(out, gbc);
-
-        gbc.gridx = 1;
-        necessaryInfo.add(oPlaceholder, gbc);
-
-        gbc.gridx = 0;
+        gbc.gridwidth = 4;
+        necessaryInfo.add(priceBreakdownLabel, gbc);
+    
         gbc.gridy = 4;
-        gbc.gridwidth = 2;
-        gbc.anchor = GridBagConstraints.CENTER;
-        necessaryInfo.add(tp, gbc);
+        displayPBTextArea = new JTextArea(5, 40);
+        displayPBTextArea.setEditable(false);
+        displayPBTextArea.setFocusable(false);
+        JScrollPane scrollPane = new JScrollPane(displayPBTextArea);
+        necessaryInfo.add(scrollPane, gbc);
+        displayPanel.add(necessaryInfo, BorderLayout.CENTER);
 
-        gbc.gridy = 5;
-        necessaryInfo.add(tpPlaceholder, gbc);
-        displayPanel.add(necessaryInfo, BorderLayout.NORTH);
-
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        returnSelectBtn2 = new JButton("Return to Select Guest");
+        returnSelectBtn2.setPreferredSize(new Dimension(200, 30));
+        buttonPanel.add(returnSelectBtn2);
+        displayPanel.add(buttonPanel, BorderLayout.SOUTH);
+    
         return displayPanel;
     }
 
+    /**
+     * This method sets up an action listener for checking the room availability option
+     * @param actionListener actionListener for the room available button
+     */
     public void setRoomAvailBtnListener(ActionListener actionListener) {
         roomAvailBtn.addActionListener(actionListener);
     }
 
+    /**
+     * This method sets up an action listener for the room information option
+     * @param actionListener actionListener for the room detail button
+     */
     public void setRoomDetailBtnListener(ActionListener actionListener) {
         roomDetailBtn.addActionListener(actionListener);
     }
 
+    /**
+     * This method sets up an action listener for checking a reservation option
+     * @param actionListener actionListener for the reservations button
+     */
     public void setReservationsBtnListener(ActionListener actionListener) {
         reservationsBtn.addActionListener(actionListener);
     }
 
+    /**
+     * This method sets up an action listener for returning to the main menu option
+     * @param actionListener actionListener for the back button
+     */
     public void setBackBtnListener(ActionListener actionListener) {
         backBtn.addActionListener(actionListener);
     }
 
+    /**
+     * This method sets up an action listener for selecting the day to view availability
+     * @param actionListener actionListener for the select day button
+     */
     public void setSelectDayBtnListener(ActionListener actionListener) {
         selectDayBtn.addActionListener(actionListener);
     }
 
+    /**
+     * This method sets up an action listener for selecting the room to view
+     * @param actionListener actionListener for the select room button
+     */
     public void setSelectRoomBtnListener(ActionListener actionListener){
         selectRoomBtn.addActionListener(actionListener);
     }
 
+    /**
+     * This method sets up an action listener for selecting a guest's reservation to view
+     * @param actionListener actionListener for the select guest button
+     */
     public void setSelectGuestBtnListener(ActionListener actionListener){
         selectGuestBtn.addActionListener(actionListener);
     }
 
+    /**
+     * This method sets up an action listener for returning from a view option
+     * @param actionListener actionListener for the return button
+     */
     public void setReturnBtnListener(ActionListener actionListener) {
         returnBtn.addActionListener(actionListener);
     }
 
+    /**
+     * This method sets up an action listener for returning from a view option
+     * @param actionListener actionListener for the return2 button
+     */
     public void setReturnBtn2Listener(ActionListener actionListener) {
         returnBtn2.addActionListener(actionListener);
     }
 
+    /**
+     * This method sets up an action listener for returning from a view option
+     * @param actionListener actionListener for the return3 button
+     */
     public void setReturnBtn3Listener(ActionListener actionListener) {
         returnBtn3.addActionListener(actionListener);
     }
 
+    /**
+     * This method sets up an action listener for returning from a view option
+     * @param actionListener actionListener for the return select button
+     */
     public void setReturnSelectBtn(ActionListener actionListener){
         returnSelectBtn.addActionListener(actionListener);
     }
 
-    /*public void setReturnSelectBtn2(ActionListener actionListener){
+    /**
+     * This method sets up an action listener for returning from a view option
+     * @param actionListener actionListener for the return select2 button
+     */
+    public void setReturnSelectBtn2(ActionListener actionListener){
         returnSelectBtn2.addActionListener(actionListener);
-    }*/
+    }
 
+    /**
+     * This method sets label colors to green
+     * @param label lable to color
+     */
     public void setGreen(JLabel label){
         label.setBackground(new Color(255, 255, 255));
         label.setForeground(new Color(0, 128, 0));
         label.setOpaque(true);
     }
 
+    /**
+     * This method sets label colors to red
+     * @param label label to color
+     */
     public void setRed(JLabel label){
         label.setBackground(new Color(255, 255, 255));
         label.setForeground(new Color(128, 0, 0));
         label.setOpaque(true);
     }
 
+    /**
+     * This methods gets the label room placeholder
+     * @return a label placeholder
+     */
     public JLabel getRPlaceHolder(){
         return rPlaceholder;
     }
 
+    /**
+     * This method gets the label price placeholder
+     * @return a label placeholder
+     */
     public JLabel getPPlaceHolder(){
         return pPlaceholder;
     }
 
-    /*public JLabel getTPlaceHolder(){
+    /**
+     * This method gets the type placeholder
+     * @return a label placeholder
+     */
+    public JLabel getTPlaceholder(){
         return tPlaceholder;
-    }*/
+    }
 
+    /**
+     * This method gets the arrayList of labels
+     * @return a JLabel arrayList
+     */
     public ArrayList<JLabel> getLabelList(){
         return labelList;
     }
 
+    /**
+     * This method gets the text area for displaying the available rooms
+     * @return a text area
+     */
     public JTextArea getAvailabilityTA() {
         return availabilityTextArea;
     }
 
-    public void updateAvailabilityTA(){
-        this.availabilityTextArea.repaint();
-        this.availabilityTextArea.revalidate();
-    }
-
+    /**
+     * This method gets a text from a text field
+     * @return user input String from the text field
+     */
     public String getAvailTfText() {
         return availTf.getText();
     }
 
+    /**
+     * This method gets the text area for displaying the rooms
+     * @return a text area
+     */
     public JTextArea getDisplayRoomsTA() {
         return displayRoomsTextArea;
     }
 
+    /**
+     * This method gets the text area for displaying price breakdown
+     * @return a text area
+     */
+    public JTextArea getDisplayPbTA(){
+        return displayPBTextArea;
+    }
+
+    /**
+     * This method gets the text from a text field for selecting a room
+     * @return user input String from text field
+     */
     public String getRoomTfText() {
         return roomTf.getText();
     }
 
+    /**
+     * This method gets the text from a text field for inputting a guest's name
+     * @return user input String from text field
+     */
     public String getGuestTfText(){
         return guestTf.getText();
     }
 
+    /**
+     * This method gets the label guest name placeholder
+     * @return a label placeholder for the guest name
+     */
     public JLabel getNPlaceHolder(){
         return nPlaceholder;
     }
 
+    /**
+     * This method gets the reservation placeholder
+     * @return a lable placeholder for the reservation
+     */
     public JLabel getResPlaceHolder(){
         return resPlaceholder;
     }
 
+    /**
+     * This method gets the check in placeholder
+     * @return a lable placeholder for the check in day
+     */
     public JLabel getIPlaceHolder(){
         return iPlaceholder;
     }
 
+    /**
+     * This method gets the check out placeholder
+     * @return a lable placeholder for the check out day
+     */
     public JLabel getOPlaceHolder(){
         return oPlaceholder;
     }
 
+    /**
+     * This method gets the total price placeholder
+     * @return a lable placeholder for the total price
+     */
     public JLabel getTpPlaceHolder(){
         return tpPlaceholder;
     }
 
+    /**
+     * This method displays the main panel using a card layout
+     * @param panelName panel added in the card layout
+     */
     public void showView(String panelName) {
         cardLayout.show(mainPanel, panelName);
     }
 
+    /**
+     * This method return the panel for displaying the available days
+     * @return a panel displaying the available days
+     */
     public JPanel getDaysPanel(){
         return this.daysPanel;
     }

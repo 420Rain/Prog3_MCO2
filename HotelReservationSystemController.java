@@ -60,6 +60,7 @@ public class HotelReservationSystemController{
                                     ViewHotelView vhView = new ViewHotelView(hotel);
         
                                     ViewHotelController vhController = new ViewHotelController(vhModel, vhView);
+                                    hrsView.closeSelectHFrame();
                             }              
                         };
                         hrsView.setButtonList(hotel.getName(), actionListener);
@@ -102,13 +103,6 @@ public class HotelReservationSystemController{
                 }
             }
         });
-
-        /*this.hrsView.setBackBtn(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                hrsView.closeManageHFrame();
-            }
-        });*/
 
         this.hrsView.setBookRoomListener(new ActionListener() {
             @Override
