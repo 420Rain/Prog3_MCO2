@@ -12,12 +12,9 @@ import java.util.*;
 * @version 1.0
 */
 public class ManageHotelView extends JFrame{
-<<<<<<< HEAD
     /**
      * These are the frames used for each option when managing a hotel
      */
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     private JFrame updPriceFrame, nameFrame, roomFrame, removeRsvFrame, guestFrame, roomTypeFrame, modFrame;
 
     /**
@@ -50,13 +47,10 @@ public class ManageHotelView extends JFrame{
      * These are the extra buttons for features within an option in managing a hotel
      */
     private JButton priceBtn, nameBtn, removeOneBtn, removeAllBtn, guestBtn,applyMdBtn;
-<<<<<<< HEAD
     
     /**
      * This is a combo box for the date price modifier option
      */
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     private JComboBox<Integer> daysCB;
     
     /**
@@ -398,10 +392,6 @@ public class ManageHotelView extends JFrame{
 
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridBagLayout());
-<<<<<<< HEAD
-
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 10, 5, 10);
         gbc.gridx = 0;
@@ -584,13 +574,10 @@ public class ManageHotelView extends JFrame{
     }
 
     //ActionListeners for date price modifier
-<<<<<<< HEAD
     /**
      * This method sets up an actionListener for the date price modifier option when managing a hotel
      * @param actionListener actionListener for the date price modifier option button
      */
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     public void setDpModifyBtn(ActionListener actionListener){
         this.dpModifyBtn.addActionListener(actionListener);
     }
@@ -742,12 +729,9 @@ public class ManageHotelView extends JFrame{
     }
 
     //Methods for closing frames
-<<<<<<< HEAD
     /**
      * This methods closes the main interface window of the manage hotel option
      */
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     public void closeManageHFrame(){
         this.dispose();
     }
