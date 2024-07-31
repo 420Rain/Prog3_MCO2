@@ -1,14 +1,11 @@
 import java.util.ArrayList;
 
-<<<<<<< HEAD
 /**
 * This class contains details about an Executive Room in a Hotel, which is a subclass of Room
 * @author Rainier A. Dulatre
 * @author Patrick Hans A. Perez
 * @version 1.0
 */
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
 public class Executive extends Room{
 
     /** 
@@ -44,12 +41,9 @@ public class Executive extends Room{
         return this.priceExecutive;
     }
 
-<<<<<<< HEAD
     /**
      * This method gets the reservations of an Executive Room
      */
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     @Override
     public ArrayList<Reservation> getReservations(){
         return super.getReservations();
