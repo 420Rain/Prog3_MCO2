@@ -1,5 +1,3 @@
-package HRS;
-
 import java.util.*;
 /**
 * This class represents a Hotel where the hotel contains a name, 
