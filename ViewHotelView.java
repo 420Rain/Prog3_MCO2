@@ -45,7 +45,6 @@ public class ViewHotelView extends JFrame {
      * These variables are the text fields for user input
      */
     private JTextField availTf, roomTf, guestTf;
-<<<<<<< HEAD
 
     /**
      * These variable are the text area for displaying rooms
@@ -55,9 +54,6 @@ public class ViewHotelView extends JFrame {
     /**
      * These variables are panels used in viewing a hotel
      */
-=======
-    private JTextArea availabilityTextArea, displayRoomsTextArea, displayPBTextArea;
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     private JPanel mainPanel, daysPanel;
 
     /**
@@ -242,13 +238,10 @@ public class ViewHotelView extends JFrame {
         return roomPanel;
     }
 
-<<<<<<< HEAD
     /**
      * This method creates the panel for the display room information
      * @return a panel for displaying room information
      */
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     public JPanel createDisplayRoomInfo() {
         Dimension buttonDim = new Dimension(150, 30);
         
@@ -349,13 +342,10 @@ public class ViewHotelView extends JFrame {
         return selectGuest;
     }
 
-<<<<<<< HEAD
     /**
      * This method creates the panel for displaying a selected reservation's information
      * @return a panel for displaying reservation information
      */
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     public JPanel createReservationDisplay() {
         JPanel displayPanel = new JPanel(new BorderLayout());
     
@@ -526,13 +516,10 @@ public class ViewHotelView extends JFrame {
         returnSelectBtn.addActionListener(actionListener);
     }
 
-<<<<<<< HEAD
     /**
      * This method sets up an action listener for returning from a view option
      * @param actionListener actionListener for the return select2 button
      */
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     public void setReturnSelectBtn2(ActionListener actionListener){
         returnSelectBtn2.addActionListener(actionListener);
     }
@@ -573,13 +560,10 @@ public class ViewHotelView extends JFrame {
         return pPlaceholder;
     }
 
-<<<<<<< HEAD
     /**
      * This method gets the type placeholder
      * @return a label placeholder
      */
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     public JLabel getTPlaceholder(){
         return tPlaceholder;
     }
@@ -688,17 +672,10 @@ public class ViewHotelView extends JFrame {
         cardLayout.show(mainPanel, panelName);
     }
 
-<<<<<<< HEAD
     /**
      * This method return the panel for displaying the available days
      * @return a panel displaying the available days
      */
-=======
-    public JTextArea getDisplayPbTA(){
-        return displayPBTextArea;
-    }
-
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     public JPanel getDaysPanel(){
         return this.daysPanel;
     }
