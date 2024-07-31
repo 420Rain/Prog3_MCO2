@@ -100,8 +100,4 @@ public class Room{
   public void setPrice(double price){
     this.price = price;
   }
-<<<<<<< HEAD
-  
-=======
->>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
 }
