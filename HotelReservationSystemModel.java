@@ -1,3 +1,5 @@
+package HRS;
+
 import java.util.*;
 
 /**
@@ -26,8 +28,8 @@ public class HotelReservationSystemModel {
      * @param name name of the hotel
      * @param numOfRooms number of rooms of the hotel
      * @return -1 if hotel has similar name to another hotel in the arraylist
-     * @return -2 if the inputted number of rooms is invalid
-     * @return 1 hotel is succesfully created
+     *  -2 if the inputted number of rooms is invalid
+     *  1 hotel is succesfully created
      */
     public int createHotel(String name, int numOfRooms){
         //Checks if the new Hotel's name exists within the array of Hotels

@@ -1,3 +1,5 @@
+package HRS;
+
 import java.util.*;
 
 import javax.swing.JOptionPane;
@@ -27,7 +29,7 @@ public class HotelReservationSystemController{
      * @param hrsModel model of HotelReservationSystem
      */
     public HotelReservationSystemController(HotelReservationSystemView hrsView, HotelReservationSystemModel hrsModel) {
-        this.hrsView = hrsView; 
+        this.hrsView = hrsView;
         this.hrsModel = hrsModel;
         
         this.hrsView.setCreateHotelBtnListener(new ActionListener() {

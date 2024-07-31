@@ -1,3 +1,5 @@
+package HRS;
+
 import java.util.*;
 
 /**
@@ -45,7 +47,7 @@ public class BookRoomModel {
      * This method checks the available rooms in a given hotel
      * @param hotel chosen hotel to check availability of rooms
      * @return true {no rooms are fully available for all days}
-     * @return false {some rooms are availably for some days}
+     *  false {some rooms are availably for some days}
      */
     public boolean availableRooms(Hotel hotel){
         Iterator<Room> roomList = hotel.getRooms().iterator();
@@ -78,7 +80,7 @@ public class BookRoomModel {
      * This method checks the availability of the room in all days
      * @param room chosen to check the availability of
      * @return false {room is not available for all days}
-     * @return true {room is available for some days}
+     *  true {room is available for some days}
      */
     public boolean checkAvailability(Room room){
         int count = 0;
@@ -103,7 +105,7 @@ public class BookRoomModel {
      * @param hotel chosen hotel to find the room from
      * @param roomName name of the room to find
      * @return index of the given room name
-     * @return -1 {room not found}
+     * -1 {room not found}
      */
     public int findRoom(Hotel hotel, String roomName){
         Iterator<Room> roomList = hotel.getRooms().iterator();
@@ -126,7 +128,7 @@ public class BookRoomModel {
      * @param reservation reservation to add to the room
      * @param room room to add the reservation to
      * @return -1 or 0 {invalid checkIn and checkOut days}
-     * @return 1 {all reservation details are valid and the reservation is added to the room}
+     * 1 {all reservation details are valid and the reservation is added to the room}
      */
     public int addReservation(Reservation reservation, Room room){
         ArrayList<Boolean> roomAvailable = room.getAvailability();
@@ -243,7 +245,7 @@ public class BookRoomModel {
      * @param checkOut check out day of the reservation
      * @param type for day 15 or day 30
      * @return true {valid for day 15 or day 30 discount}
-     * @return false {checkIn and checkOut days are invalid for the discount code to work}
+     *  false {checkIn and checkOut days are invalid for the discount code to work}
      */
     private boolean checkInRange(int checkIn, int checkOut, int type){
         for(int i = checkIn; i < checkOut; i++){

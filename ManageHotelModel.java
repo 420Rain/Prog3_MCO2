@@ -1,3 +1,5 @@
+package HRS;
+
 import java.util.*;
 
 /**
@@ -15,7 +17,7 @@ public class ManageHotelModel{
 
     /**
      * This is the constructor for a ManageHotelModel instance
-     * @param hotelList
+     * @param hotelList arraylist of hotels
      */
     public ManageHotelModel(ArrayList<Hotel> hotelList){
         this.hotelList = hotelList;
@@ -34,7 +36,7 @@ public class ManageHotelModel{
      * @param hotel chosen hotel for changing name
      * @param name new name for the hotel
      * @return false the new name inputted is already taken by an exisiting hotel
-     * @return true the new name inputted is unique
+     *  true the new name inputted is unique
      */
     public boolean changeName(Hotel hotel, String name){
         for(int i = 0; i < this.hotelList.size(); i++){
@@ -52,7 +54,7 @@ public class ManageHotelModel{
      * @param hotel chosen hotel for adding a room to
      * @param roomType the type of room to add (standard/deluxe/executive)
      * @return true {there are less than 50 rooms in the hotel and a room was successfully added}
-     * @return false {the hotel already has 50 rooms and a room was not added}
+     *  false {the hotel already has 50 rooms and a room was not added}
      */
     public boolean addRoom(Hotel hotel, int roomType) {
         // Check if a Room instance can still be added
@@ -98,7 +100,7 @@ public class ManageHotelModel{
      * @param hotel chosen hotel to check room names
      * @param roomName given room name to check if unique
      * @return true {room name is already existing}
-     * @return false {room name is unique}
+     *  false {room name is unique}
      */
     private boolean isRoomNameTaken(Hotel hotel, String roomName) {
         for (Room room : hotel.getRooms()) {
@@ -114,7 +116,7 @@ public class ManageHotelModel{
      * @param hotel chosen hotel to remove a room from
      * @param roomName existing name of a room in the hotel
      * @return true {chosen room to remove has no reservation and is has been removed from the hotel}
-     * @return false {chosen room has a reservation and is not removed from the hotel}
+     * false {chosen room has a reservation and is not removed from the hotel}
      */
     public boolean removeRoom(Hotel hotel, String roomName){
         //Loops through a Hotel's Rooms
@@ -141,7 +143,7 @@ public class ManageHotelModel{
      * @param hotel chosen hotel to update the room prices for
      * @param price new price inputted by the user
      * @return false {some rooms have reservations and the prices were not changed}
-     * @return true {all rooms have no reservations and the prices were changed}
+     *  true {all rooms have no reservations and the prices were changed}
      */
     public boolean updatePrice(Hotel hotel, double price){
         return hotel.setRoomPrice(price);

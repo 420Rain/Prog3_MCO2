@@ -1,3 +1,5 @@
+package HRS;
+
 import java.util.*;
 /**
 * This class represents a Hotel where the hotel contains a name, 
@@ -137,6 +139,8 @@ public class Hotel{
   /**
   * This method changes the new base price of the Rooms in the Hotel
   * @param price base price of a Room
+  * @return true if roomprice is set
+  * false if there are reservations in room
   */
   public boolean setRoomPrice(double price){
     for(int i = 0; i < numRooms; i++){ //cause you can only change price if theres no reservations in all rooms

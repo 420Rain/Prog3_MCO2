@@ -1,3 +1,5 @@
+package HRS;
+
 import java.util.*;
 /**
 * This class contains the information 
@@ -48,6 +50,7 @@ public class Reservation{
     * @param checkIn a number representing the day the guest will check in
     * @param checkOut a number representing the day the guest will check out
     * @param room a Room object where the Reservation will take place
+    * @param discount discount code inputted by the user
     */
     public Reservation(String username, int checkIn, int checkOut, Room room, String discount){
       this.guestName = username;

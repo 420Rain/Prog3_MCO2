@@ -1,3 +1,5 @@
+package HRS;
+
 import java.util.*;
 
 /**
@@ -22,7 +24,7 @@ public class ViewHotelModel {
 
     /**
      * This gets the hotel variable of this model
-     * @return
+     * @return gets Hotel object being viewed
      */
     public Hotel getHotel(){
         return hotelViewed;
@@ -48,7 +50,7 @@ public class ViewHotelModel {
      * @param room chosen room to check availability of
      * @param day chosen day to check availability
      * @return index of an available day
-     * @return false {room is not available}
+     *  false {room is not available}
      */
     private boolean isAvailable(Room room, int day) {
         List<Boolean> availability = room.getAvailability();
@@ -63,7 +65,7 @@ public class ViewHotelModel {
      * @param roomList array list of rooms to find the room from
      * @param roomName name of the room to find
      * @return a Room instance if the room is found
-     * @return null {room not found}
+     *  null {room not found}
      */
     public Room findRoom(ArrayList<Room> roomList, String roomName){
         Iterator<Room> roomListIterator = roomList.iterator();
@@ -84,7 +86,7 @@ public class ViewHotelModel {
      * @param roomIndex index of the room to find the reservation
      * @param resIndex index of the reservation to find
      * @return true {reservation with the given guest name is found}
-     * @return false {reservation with the given guest name is not found}
+     *  false {reservation with the given guest name is not found}
      */
     public boolean findGuestRes(String name, Integer roomIndex[], Integer resIndex[]){
         ArrayList<Room> roomList = hotelViewed.getRooms();
