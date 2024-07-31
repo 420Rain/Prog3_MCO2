@@ -1,10 +1,14 @@
 import java.util.ArrayList;
+<<<<<<< HEAD
 /**
 * This class contains details about a Deluxe Room in a Hotel, which is a subclass of Room
 * @author Rainier A. Dulatre
 * @author Patrick Hans A. Perez
 * @version 1.0
 */
+=======
+
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
 public class Deluxe extends Room{
 
     /** 
@@ -40,9 +44,12 @@ public class Deluxe extends Room{
         return this.priceDeluxe;
     }
 
+<<<<<<< HEAD
     /**
      * This method gets the reservations of a Deluxe Room
      */
+=======
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     @Override
     public ArrayList<Reservation> getReservations(){
         return super.getReservations();

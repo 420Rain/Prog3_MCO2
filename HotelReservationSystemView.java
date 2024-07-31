@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.BorderUIResource;
 
 import java.util.*;
 
@@ -48,12 +46,17 @@ public class HotelReservationSystemView extends JFrame {
         //for noHFrame
         this.okayBtn = new JButton("Okay");
         this.okayBtn.setPreferredSize(new Dimension(100, 20));
+<<<<<<< HEAD
+=======
+        
+        //removes the blue thing around the text of the button but needs to applied to all buttons :(
+        this.okayBtn.setFocusPainted(false);
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
     }
 
     public void initialize(){
         Dimension buttonDim = new Dimension(170, 30);
 
-        //Left Panel
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
@@ -98,7 +101,6 @@ public class HotelReservationSystemView extends JFrame {
 
         this.add(westPanel, BorderLayout.WEST);
 
-        //Center Panel
         promptLbl2 = new JLabel("Welcome to the Hotel Reservation System!");
         promptLbl2.setHorizontalAlignment(SwingConstants.CENTER);
         centerPanel.add(promptLbl2, BorderLayout.CENTER);
@@ -111,7 +113,6 @@ public class HotelReservationSystemView extends JFrame {
         centerPanel.repaint();
     }
     
-    //for main menu buttons
     public void setCreateHotelBtnListener(ActionListener actionListener) {
 		  this.createHotelBtn.addActionListener(actionListener);
 	  }
@@ -299,5 +300,8 @@ public class HotelReservationSystemView extends JFrame {
     public void closeNoHFrame(){
       noHFrame.dispose();
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
 }

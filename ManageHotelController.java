@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -9,6 +10,10 @@ import javax.swing.JOptionPane;
 * @author Patrick Hans A. Perez
 * @version 1.0
 */
+=======
+import javax.swing.JOptionPane;
+
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
 public class ManageHotelController{
     /**
      * This variable is the model used for the controller
@@ -190,7 +195,10 @@ public class ManageHotelController{
                 else{
                     JOptionPane.showMessageDialog(null, "Not within range of 1 - 31", "ERROR", 0);
                 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
             }
         });
 
@@ -206,6 +214,10 @@ public class ManageHotelController{
                             if (!room.getReservations().isEmpty()) {
                                 MHview.closeRoomFrame();
                                 MHview.removeRsvDisplay(room);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
                                 MHview.clearRemoveReservationButtons();
 
                                 removeOneRsv(room);

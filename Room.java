@@ -14,6 +14,7 @@ public class Room{
   * This variable contains a Room's price
   */
   private double price;
+
   /**
   * This variable contains an array of Boolean where it holds the
   * availability of the rooms from day 1-31
@@ -99,5 +100,8 @@ public class Room{
   public void setPrice(double price){
     this.price = price;
   }
+<<<<<<< HEAD
   
+=======
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
 }

@@ -34,6 +34,7 @@ public class Hotel{
     private ArrayList<Integer> markedDayList;
     private ArrayList<Double> markedPriceList;
 
+<<<<<<< HEAD
     /**
     * This method creates a new Hotel Instance
     * @param name the name of the hotel
@@ -47,12 +48,28 @@ public class Hotel{
       this.hotelRooms = new ArrayList<Room>();
       this.markedDayList = new ArrayList<Integer>();
       this.markedPriceList = new ArrayList<Double>();
+=======
+  /**
+  * This method creates a new Hotel Instance
+  * @param name the name of the hotel
+  * @param numOfRooms the number of rooms of the hotel
+  * @param roomPrice the base price of the rooms
+  */
+  public Hotel(String name, int numOfRooms, double roomPrice){
+    this.name = name;
+    this.price = roomPrice;
+    this.numRooms = numOfRooms;
+    this.hotelRooms = new ArrayList<Room>();
+    this.markedDayList = new ArrayList<Integer>();
+    this.markedPriceList = new ArrayList<Double>();
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
 
 
       int numStdRooms = (numOfRooms + 2) / 3;
       int numDlxRooms = (numOfRooms + 1) / 3;
       int numExcRooms = numOfRooms / 3;
 
+<<<<<<< HEAD
       for (int i = 0; i < numStdRooms; i++) {
         hotelRooms.add(new Room("Room " + (i + 1), roomPrice));
       } 
@@ -63,6 +80,18 @@ public class Hotel{
         hotelRooms.add(new Executive("Room " + (numStdRooms + numDlxRooms + i + 1), roomPrice)); // Adjust price if needed
       }
     }
+=======
+    for (int i = 0; i < numStdRooms; i++) {
+      hotelRooms.add(new Room("Room " + (i + 1), roomPrice));
+    } 
+    for (int i = 0; i < numDlxRooms; i++) {
+      hotelRooms.add(new Deluxe("Room " + (numStdRooms + i + 1), roomPrice)); // Adjust price if needed
+    }
+    for (int i = 0; i < numExcRooms; i++) {
+      hotelRooms.add(new Executive("Room " + (numStdRooms + numDlxRooms + i + 1), roomPrice)); // Adjust price if needed
+    }
+  }
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
 
   /**
   * This method gets the name of the Hotel

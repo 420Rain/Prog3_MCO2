@@ -110,7 +110,10 @@ public class ViewHotelController {
         
                 name.setText(room.getName());
                 price.setText(String.valueOf(room.getPrice()));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
                 if(room instanceof Deluxe){
                     type.setText("Deluxe");
                 }
@@ -169,7 +172,11 @@ public class ViewHotelController {
                     }
 
                     Iterator<String> pbIterator = reservation.getPriceBreakdown().iterator();
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 4ce1ffba72a3990dfb1c288ce153ad971f414324
                     textArea.setText("");
 
                     while(pbIterator.hasNext()){
